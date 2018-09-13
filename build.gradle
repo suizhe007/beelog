@@ -12,9 +12,9 @@ allprojects {
 
   ext {
     mavenClouderaUrl = 'https://repository.cloudera.com/artifactory/cloudera-repos'
-    mavenPublicUrl = 'http://192.168.88.8:8081/nexus/content/repositories/public'
-    mavenReleaseUrl = 'http://192.168.88.8:8081/nexus/content/repositories/releases'
-    mavenSnapshotUrl = 'http://192.168.88.8:8081/nexus/content/repositories/snapshots'
+    mavenPublicUrl = 'http://127.0.0.1:8081/nexus/content/repositories/public'
+    mavenReleaseUrl = 'http://127.0.0.1:8081/nexus/content/repositories/releases'
+    mavenSnapshotUrl = 'http://127.0.0.1:8081/nexus/content/repositories/snapshots'
   }
 
   repositories {
