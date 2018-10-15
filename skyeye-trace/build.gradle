@@ -13,10 +13,10 @@ allprojects {
     repositories {
       mavenDeployer {
         repository(url: mavenReleaseUrl) {
-          authentication(userName: 'admin', password: 'admin123')
+          authentication(userName: mavenUserName, password: mavenPassword)
         }
         snapshotRepository(url: mavenSnapshotUrl) {
-          authentication(userName: 'admin', password: 'admin123')
+          authentication(userName: mavenUserName, password: mavenPassword)
         }
       }
     }
