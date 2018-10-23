@@ -1,1 +1,0 @@
-include 'skyeye-data-dubbo', 'skyeye-data-dubbox', 'skyeye-data-hbase', 'skyeye-data-http', 'skyeye-data-jpa', 'skyeye-data-rabbitmq'

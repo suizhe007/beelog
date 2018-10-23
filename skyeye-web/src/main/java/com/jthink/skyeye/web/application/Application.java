@@ -24,8 +24,8 @@ import java.util.Set;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.jthink.skyeye.web", "com.jthink.skyeye.data.jpa", "com.jthink.skyeye.data.rabbitmq"})
-@PropertySource("file:/opt/jthink/jthink-config/skyeye/web/web.properties")
-//@PropertySource("classpath:properties/web.properties")
+//@PropertySource("file:/opt/jthink/jthink-config/skyeye/web/web.properties")
+@PropertySource("classpath:properties/web-dev.properties")
 public class Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);

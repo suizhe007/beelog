@@ -1,4 +1,0 @@
-dependencies {
-  compile project(':skyeye-trace:skyeye-trace-core')
-  compile "com.netflix.zuul:zuul-core:$zullVersion"
-}

@@ -1,2 +1,0 @@
-rootProject.name = 'hi-log'
-include 'hi-log-log4j2'

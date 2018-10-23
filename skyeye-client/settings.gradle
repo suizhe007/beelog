@@ -1,1 +1,0 @@
-include 'skyeye-client-core' , 'skyeye-client-log4j', 'skyeye-client-logback', 'skyeye-client-log4j2'

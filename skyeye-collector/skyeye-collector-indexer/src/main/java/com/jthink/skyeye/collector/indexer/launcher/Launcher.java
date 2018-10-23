@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * JThink@JThink
  *
- * @author JThink
+ * @author JThinkelasticsearch
  * @version 0.0.1
  * @desc 项目启动器
  * @date 2016-08-24 18:31:48
@@ -28,8 +28,8 @@ import java.util.Set;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"com.jthink.skyeye.collector.core", "com.jthink.skyeye.collector.indexer"})
-@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-indexer.properties")
-//@PropertySource("classpath:properties/collector-indexer.properties")
+//@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-indexer.properties")
+@PropertySource("classpath:properties/collector-indexer-dev.properties")
 public class Launcher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Launcher.class);

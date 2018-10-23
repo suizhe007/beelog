@@ -1,4 +1,0 @@
-dependencies {
-  compile project(':skyeye-client:skyeye-client-core')
-  compile "log4j:log4j:$log4jVersion"
-}

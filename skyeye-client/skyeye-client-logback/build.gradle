@@ -1,9 +1,0 @@
-dependencies {
-  compile project(':skyeye-client:skyeye-client-core')
-  compile "ch.qos.logback:logback-classic:$logbackVersion"
-}
-
-configurations {
-  compile.exclude group: "log4j", module: "log4j"
-  compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
-}

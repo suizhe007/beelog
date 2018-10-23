@@ -29,8 +29,8 @@ import java.util.UUID;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"com.jthink.skyeye.collector.core", "com.jthink.skyeye.collector.backup"})
-@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-backup.properties")
-//@PropertySource("classpath:properties/collector-backup.properties")
+//@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-backup.properties")
+@PropertySource("classpath:properties/collector-backup-dev.properties")
 public class Launcher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Launcher.class);

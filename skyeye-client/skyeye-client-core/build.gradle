@@ -1,6 +1,0 @@
-configurations {
-  compile.exclude group: "log4j", module: "log4j"
-  compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
-  compile.exclude group: "ch.qos.logback", module: "logback-classic"
-  compile.exclude group: "ch.qos.logback", module: "logback-core"
-}

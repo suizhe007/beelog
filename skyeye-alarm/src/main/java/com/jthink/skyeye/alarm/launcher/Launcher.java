@@ -24,8 +24,8 @@ import java.util.Set;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.jthink.skyeye.alarm", "com.jthink.skyeye.data.rabbitmq"})
-@PropertySource("file:/opt/jthink/jthink-config/skyeye/alarm/alarm.properties")
-//@PropertySource("classpath:properties/alarm.properties")
+//@PropertySource("file:/opt/skyeye/config/alarm/alarm.properties")
+@PropertySource("classpath:properties/alarm.properties")
 public class Launcher {
 
     private static volatile boolean RUNNING = true;

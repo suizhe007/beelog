@@ -1,8 +1,0 @@
-dependencies {
-  compile ("org.springframework.boot:spring-boot-starter-amqp:$springBootVersion") {
-    exclude group: 'org.springframework', module: 'spring-web'
-  }
-  compile "org.springframework:spring-tx:$springVersion"
-  compile "org.codehaus.jackson:jackson-core-asl:$jacksonVersion"
-  compile "org.codehaus.jackson:jackson-mapper-asl:$jacksonVersion"
-}

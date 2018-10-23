@@ -28,8 +28,8 @@ import java.util.Set;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"com.jthink.skyeye.collector.core", "com.jthink.skyeye.collector.metrics", "com.jthink.skyeye.data.rabbitmq", "com.jthink.skyeye.data.jpa"})
-@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-metrics.properties")
-//@PropertySource("classpath:properties/collector-metrics.properties")
+//@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-metrics.properties")
+@PropertySource("classpath:properties/collector-metrics-dev.properties")
 public class Launcher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Launcher.class);

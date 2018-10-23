@@ -16,7 +16,6 @@ import org.springframework.context.annotation.PropertySource;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * JThink@JThink
@@ -29,8 +28,8 @@ import java.util.UUID;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"com.jthink.skyeye.collector.core", "com.jthink.skyeye.collector.trace", "com.jthink.skyeye.data.jpa"})
-@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-trace.properties")
-//@PropertySource("classpath:properties/collector-trace.properties")
+//@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-trace.properties")
+@PropertySource("classpath:properties/collector-trace-dev.properties")
 public class Launcher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Launcher.class);
