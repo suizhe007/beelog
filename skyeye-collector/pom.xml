@@ -25,10 +25,8 @@
 
     <modules>
         <module>skyeye-collector-core</module>
-        <module>skyeye-collector-backup</module>
         <module>skyeye-collector-indexer</module>
         <module>skyeye-collector-metrics</module>
-        <module>skyeye-collector-trace</module>
     </modules>
 
     <!-- this section defines the module versions that are used if nothing else is specified. -->

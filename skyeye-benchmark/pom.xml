@@ -19,9 +19,7 @@
     </properties>
 
     <modules>
-        <module>dubbo-service</module>
         <module>hi-log</module>
         <module>log-generater</module>
-        <module>spring-cloud-service</module>
     </modules>
 </project>

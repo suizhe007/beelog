@@ -26,10 +26,6 @@
     </properties>
 
     <modules>
-        <module>skyeye-data-dubbo</module>
-        <module>skyeye-data-dubbox</module>
-        <module>skyeye-data-hbase</module>
-        <module>skyeye-data-http</module>
         <module>skyeye-data-jpa</module>
         <module>skyeye-data-rabbitmq</module>
     </modules>

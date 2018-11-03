@@ -37,13 +37,10 @@
     <modules>
         <module>skyeye-base</module>
         <module>skyeye-data</module>
-        <module>skyeye-trace</module>
-        <module>skyeye-agent</module>
         <module>skyeye-alarm</module>
         <module>skyeye-client</module>
         <module>skyeye-collector</module>
         <module>skyeye-monitor</module>
-        <module>skyeye-statistics</module>
         <module>skyeye-web</module>
         <!--benchmark test-->
         <module>skyeye-benchmark</module>
