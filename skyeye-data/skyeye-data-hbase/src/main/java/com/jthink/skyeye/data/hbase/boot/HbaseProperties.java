@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @desc
  * @date 2016-11-16 14:51:42
  */
-@ConfigurationProperties(prefix = "spring.data.hbase")
+@ConfigurationProperties(prefix = "data.hbase")
 public class HbaseProperties {
 
     private String quorum;

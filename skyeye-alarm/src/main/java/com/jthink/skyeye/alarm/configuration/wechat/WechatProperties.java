@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @desc
  * @date 2016-09-29 17:40:53
  */
-@ConfigurationProperties(prefix = "spring.alert.wechat")
+@ConfigurationProperties(prefix = "alert.wechat")
 public class WechatProperties {
 
     private String url;

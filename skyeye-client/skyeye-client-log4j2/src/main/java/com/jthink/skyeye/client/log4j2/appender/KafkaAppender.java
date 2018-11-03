@@ -16,7 +16,11 @@ import org.apache.logging.log4j.core.appender.AppenderLoggingException;
 import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.Node;
 import org.apache.logging.log4j.core.config.Property;
-import org.apache.logging.log4j.core.config.plugins.*;
+import org.apache.logging.log4j.core.config.plugins.Plugin;
+import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
+import org.apache.logging.log4j.core.config.plugins.PluginConfiguration;
+import org.apache.logging.log4j.core.config.plugins.PluginElement;
+import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.apache.logging.log4j.core.layout.SerializedLayout;
 import org.apache.logging.log4j.core.util.StringEncoder;
@@ -29,13 +33,17 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.jthink.skyeye.base.constant.Constants.KAFKA_MESSAGE_MAX_SIZE;
+
 /**
- * JThink@JThink
  *
- * @author JThink
- * @version 0.0.1
  * @desc KafkaAppender, 包含log4j2 kafka appender的配置, 仿照官网的appender进行修改加入自己的功能
- * @date 2017-08-14 09:30:45
+ * @desc 相对于官方的类，主要修改点：
+ * 1消息序列化使用String。
+ * 2增加消息的分区器，保证同样的消息进入同一个分区。
+ * 3增加检测机制保证在整个kafka集群挂掉又恢复可以正常追写日志，同时消息的大小不至于过大，否则会对kafka集群造成影响。
+ * 4增加报警机制，在kafka集群挂掉后，应用无法写日志，通知相关人员。
+ * @see org.apache.logging.log4j.core.appender.mom.kafka.KafkaAppender
  */
 @Plugin(name = "KafkaCustomize", category = Node.CATEGORY, elementType = Appender.ELEMENT_TYPE, printObject = true)
 public class KafkaAppender extends AbstractAppender {
@@ -94,7 +102,7 @@ public class KafkaAppender extends AbstractAppender {
                 // 发送数据到kafka
                 String value = System.nanoTime() + Constants.SEMICOLON + new String(data);
                 // 对value的大小进行判定，当大于某个值认为该日志太大直接丢弃（防止影响到kafka）
-                if (value.length() > 10000) {
+                if (value.length() > KAFKA_MESSAGE_MAX_SIZE) {
                     return;
                 }
                 final ProducerRecord<byte[], String> record = new ProducerRecord<>(this.manager.getTopic(), this.manager.getKey(),
@@ -102,9 +110,12 @@ public class KafkaAppender extends AbstractAppender {
                 LazySingletonProducer.getInstance(this.manager.getConfig()).send(record, new Callback() {
                     @Override
                     public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                        // TODO: 异常发生如何处理(目前使用RollingFileAppender.java中的方法)
+                        /**
+                         * TODO: 异常发生如何处理?目前使用的方法是:
+                         * @see org.apache.logging.log4j.core.appender.RollingFileAppender
+                         */
                         if (null != e) {
-                            // 设置停止
+                            // 设置appender停止状态
                             setStopped();
                             LOGGER.error("kafka send error in appender", e);
                             // 发生异常，kafkaAppender 停止收集，向节点写入数据（监控系统会感知进行报警）

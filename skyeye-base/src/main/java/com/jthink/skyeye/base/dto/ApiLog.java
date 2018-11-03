@@ -9,6 +9,7 @@ import com.jthink.skyeye.base.constant.EventType;
  * @author JThink
  * @version 0.0.1
  * @desc api调用日志事件
+ * 相比 EventLog 多了一个account字段
  * @date 2016-11-14 10:17:08
  */
 public class ApiLog extends EventLog {
@@ -16,8 +17,8 @@ public class ApiLog extends EventLog {
     // 具体请求api的账户
     private String account;
 
-    /**
-     * 不可主动new
+    /**不可主动new
+     *
      */
     private ApiLog() {
 

@@ -41,7 +41,7 @@ public class HandleRebalance implements ConsumerRebalanceListener, InitializingB
 
     @Override
     public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-
+        this.kafkaConsumer.seekToBeginning(partitions);
     }
 
     @Override

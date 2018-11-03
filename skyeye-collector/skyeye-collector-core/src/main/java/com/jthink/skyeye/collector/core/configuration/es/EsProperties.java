@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @desc es的配置项
  * @date 2016-09-20 10:44:54
  */
-@ConfigurationProperties(prefix = "spring.indexer.es")
+@ConfigurationProperties(prefix = "indexer.es")
 public class EsProperties {
 
     private String ips;

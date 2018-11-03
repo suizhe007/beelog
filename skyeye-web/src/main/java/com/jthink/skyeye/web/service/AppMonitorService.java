@@ -8,7 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * JThink@JThink
@@ -20,14 +24,14 @@ import java.util.*;
  */
 @Service
 public class AppMonitorService {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(AppMonitorService.class);
+
 
     @Autowired
     private AppInfoRepository appInfoRepository;
 
     /**
-     * 根据host和app type查询状态信息
+     * 根据host、app、type查询状态信息
      * @param host
      * @param app
      * @param type

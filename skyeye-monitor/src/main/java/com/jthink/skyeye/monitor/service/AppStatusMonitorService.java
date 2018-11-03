@@ -1,12 +1,11 @@
 package com.jthink.skyeye.monitor.service;
 
+import com.jthink.skyeye.base.constant.Constants;
 import com.jthink.skyeye.data.rabbitmq.service.RabbitmqService;
 import com.jthink.skyeye.monitor.listener.ScrollChildrenChangeListener;
-import com.jthink.skyeye.base.constant.Constants;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

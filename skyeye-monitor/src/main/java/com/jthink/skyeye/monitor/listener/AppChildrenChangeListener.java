@@ -1,13 +1,12 @@
 package com.jthink.skyeye.monitor.listener;
 
-import com.jthink.skyeye.data.rabbitmq.service.RabbitmqService;
-import com.jthink.skyeye.monitor.service.AppInfoService;
-import com.jthink.skyeye.monitor.service.CacheService;
 import com.jthink.skyeye.base.constant.Constants;
 import com.jthink.skyeye.base.constant.LogCollectionStatus;
 import com.jthink.skyeye.base.dto.AlertDto;
-import com.jthink.skyeye.base.dto.MailDto;
 import com.jthink.skyeye.base.util.DateUtil;
+import com.jthink.skyeye.data.rabbitmq.service.RabbitmqService;
+import com.jthink.skyeye.monitor.service.AppInfoService;
+import com.jthink.skyeye.monitor.service.CacheService;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
@@ -15,7 +14,6 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Date;
 
 /**

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="60">
+  <!--
+  monitorInterval：Log4j能够自动检测修改配置文件和重新配置本身，设置间隔秒数。
+  -->
   <Properties>
     <Property name="LOG_HOME">../logs/</Property>
-    <property name="APP_NAME" value="hi-log-log4j2" />
+    <property name="APP_NAME" value="hi-log-log4j2"/>
   </Properties>
 
   <Appenders>
@@ -31,11 +34,11 @@
     </RollingFile>
 
     <!-- kafka appender -->
-    <KafkaCustomize name="KafkaCustomize" topic="app-log" zkServers="192.168.88.70:2181,192.168.88.71:2181,192.168.88.72:2181"
-                    mail="qianjc@unionpaysmart.com" rpc="none" app="${APP_NAME}">
+    <KafkaCustomize name="KafkaCustomize" topic="app-log" zkServers="192.168.14.111:2181"
+                    mail="qqrryu@126.com" rpc="none" app="${APP_NAME}">
       <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS};${APP_NAME};HOSTNAME;%t;%-5level;%logger{96};%line;%msg%n"/>
-      <Property name="bootstrap.servers">192.168.88.70:9092,192.168.88.71:9092,192.168.88.72:9092</Property>
+      <Property name="bootstrap.servers">192.168.14.111:9092</Property>
       <Property name="acks">0</Property>
       <Property name="linger.ms">100</Property>
     </KafkaCustomize>

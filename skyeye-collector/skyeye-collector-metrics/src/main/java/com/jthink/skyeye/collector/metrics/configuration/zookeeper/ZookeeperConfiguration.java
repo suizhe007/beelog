@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2016-11-22 08:45:53
  */
 @Configuration
-@ConfigurationProperties(prefix = "spring.coordinate.zookeeper")
+@ConfigurationProperties(prefix = "coordinate.zookeeper")
 public class ZookeeperConfiguration {
 
     private String zkServers;

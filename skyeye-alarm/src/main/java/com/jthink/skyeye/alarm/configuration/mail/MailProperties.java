@@ -14,7 +14,7 @@ import java.util.List;
  * @desc mail常量
  * @date 2016-09-26 10:10:25
  */
-@ConfigurationProperties(prefix = "spring.mail.jthink")
+@ConfigurationProperties(prefix = "mail.jthink")
 public class MailProperties {
 
     private String smtphost;

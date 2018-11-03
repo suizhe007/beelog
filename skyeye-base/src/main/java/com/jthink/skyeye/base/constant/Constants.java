@@ -208,6 +208,9 @@ public class Constants {
     public static final String KAFKA_BOOTSTRAP_SERVERS_CONFIG = "bootstrap.servers";
     public static final String KAFKA_AUTO_OFFSET_RESET_CONFIG = "auto.offset.reset";
 
+    //kafka相关
+    public static final int KAFKA_MESSAGE_MAX_SIZE = 10000;
+
     // 日志级别
     public static final String LOG_LEVEL_INFO = "INFO";
     public static final String LOG_LEVEL_ERROR = "ERROR";

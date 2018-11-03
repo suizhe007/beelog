@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @desc kafka配置项
  * @date 2016-09-20 10:15:05
  */
-@ConfigurationProperties(prefix = "spring.message.kafka")
+@ConfigurationProperties(prefix = "message.kafka")
 public class KafkaProperties {
 
     private String brokers;

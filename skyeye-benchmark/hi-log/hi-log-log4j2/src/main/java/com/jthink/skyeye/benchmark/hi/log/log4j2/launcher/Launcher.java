@@ -26,6 +26,25 @@ public class Launcher {
     private static volatile boolean RUNNING = true;
     private static final Logger LOGGER = LoggerFactory.getLogger(Launcher.class);
 
+    /**
+     * slf4j与log4j2集成：
+     * 需要的jar包：
+     * slf4j-api
+     * log4j-api
+     * log4j-core
+     * log4j-slf4j-impl(集成包)
+     * <p>
+     * <p>
+     * 由于SpringApplication使用commons-logging编写log,所以需要集成commons-logging,转换为slf4j输出
+     * pom文件中解除jcl-over-slf4j
+     * commons-logging与slf4j集成：
+     * 需要的jar包：
+     * jcl-over-slf4j(集成包，不再需要commons-logging)
+     * slf4j-api
+     *
+     * @param args
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(Launcher.class);
         Set<ApplicationListener<?>> listeners = builder.application().getListeners();

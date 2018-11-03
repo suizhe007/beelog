@@ -22,12 +22,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * JThink@JThink
+ * @desc 对kafka以及别的相关操作, 修改自官网的参考类
+ * @desc 主要修改点：1 添加了心跳检测器，2 注册到zk
  *
- * @author JThink
- * @version 0.0.1
- * @desc KafkaMangager, 对kafka以及别的相关操作, 修改自官网
- * @date 2017-08-15 09:30:45
+ * @see org.apache.logging.log4j.core.appender.mom.kafka.KafkaManager,
+ *
  */
 public class KafkaManager extends AbstractManager {
 

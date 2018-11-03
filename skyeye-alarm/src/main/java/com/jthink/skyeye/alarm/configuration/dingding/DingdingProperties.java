@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @desc 钉钉配置文件
  * @date 2017-09-29 09:16:16
  */
-@ConfigurationProperties(prefix = "spring.alert.dingding")
+@ConfigurationProperties(prefix = "alert.dingding")
 public class DingdingProperties {
 
     private String url;

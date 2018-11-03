@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author JThink
  * @version 0.0.1
- * @desc 异常处理的job，包含第三方系统异常、任务调度异常
+ * @desc 异常处理的job，包含第三方系统异常，任务调度异常，中间件，api调用
  * @date 2016-11-21 17:23:57
  */
 public class ExceptionProcessor extends Job {

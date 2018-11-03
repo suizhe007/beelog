@@ -1,7 +1,7 @@
 package com.jthink.skyeye.client.log4j.appender;
 
-import com.jthink.skyeye.base.constant.RpcType;
 import com.jthink.skyeye.base.constant.Constants;
+import com.jthink.skyeye.base.constant.RpcType;
 import com.jthink.skyeye.base.util.StringUtil;
 import com.jthink.skyeye.client.core.constant.KafkaConfig;
 import com.jthink.skyeye.client.core.constant.NodeMode;
@@ -10,7 +10,10 @@ import com.jthink.skyeye.client.core.producer.LazySingletonProducer;
 import com.jthink.skyeye.client.core.register.ZkRegister;
 import com.jthink.skyeye.client.core.util.SysUtil;
 import org.I0Itec.zkclient.ZkClient;
-import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.Callback;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.log4j.AppenderSkeleton;
@@ -26,13 +29,16 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.jthink.skyeye.base.constant.Constants.KAFKA_MESSAGE_MAX_SIZE;
+
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
+ *官方没实现，自定义实现
  * @desc KafkaAppender, 包含log4j kafka appender的配置
  * @date 2016-09-27 09:30:45
+ * 1消息序列化使用String。
+ * 2增加消息的分区器，保证同样的消息进入同一个分区。
+ * 3增加检测机制保证在整个kafka集群挂掉又恢复可以正常追写日志，同时消息的大小不至于过大，否则会对kafka集群造成影响。
+ * 4增加报警机制，在kafka集群挂掉后，应用无法写日志，通知相关人员。
  */
 public class KafkaAppender extends AppenderSkeleton {
 
@@ -132,7 +138,7 @@ public class KafkaAppender extends AppenderSkeleton {
      */
     private void send(String value) {
         // 对value的大小进行判定，当大于某个值认为该日志太大直接丢弃（防止影响到kafka）
-        if (value.length() > 10000) {
+        if (value.length() > KAFKA_MESSAGE_MAX_SIZE) {
             return;
         }
 

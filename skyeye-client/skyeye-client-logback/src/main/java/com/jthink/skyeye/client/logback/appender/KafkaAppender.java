@@ -31,6 +31,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.jthink.skyeye.base.constant.Constants.KAFKA_MESSAGE_MAX_SIZE;
+
 /**
  * JThink@JThink
  *
@@ -142,7 +144,7 @@ public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
         }
         final String value = System.nanoTime() + Constants.SEMICOLON + this.encoder.doEncode(e);
         // 对value的大小进行判定，当大于某个值认为该日志太大直接丢弃（防止影响到kafka）
-        if (value.length() > 10000) {
+        if (value.length() > KAFKA_MESSAGE_MAX_SIZE) {
             return;
         }
         final ProducerRecord<byte[], String> record = new ProducerRecord<>(this.topic, this.key, value.replaceFirst(this.orginApp, this.app).replaceFirst(Constants.HOSTNAME, this.host));

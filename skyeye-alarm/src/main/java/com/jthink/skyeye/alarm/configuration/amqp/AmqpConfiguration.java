@@ -1,8 +1,6 @@
 package com.jthink.skyeye.alarm.configuration.amqp;
 
 import com.jthink.skyeye.alarm.listener.SyncRequestListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -24,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2017-09-29 09:16:16
  */
 @Configuration("amqpListenerConfiguration")
-@ConfigurationProperties(prefix = "spring.queue.rabbitmq")
+@ConfigurationProperties(prefix = "queue.rabbitmq")
 @ConditionalOnClass(com.jthink.skyeye.data.rabbitmq.configuration.AmqpConfiguration.class)
 public class AmqpConfiguration {
 
