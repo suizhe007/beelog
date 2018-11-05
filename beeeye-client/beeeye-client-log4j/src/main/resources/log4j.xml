@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <!-- 输出日志到控制台 ConsoleAppender -->
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <param name="Threshold" value="info"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%t] %37c %x: %m%n"></param>
+        </layout>
+    </appender>
+
+    <!-- debug -->
+    <appender name="dailyBebugFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="debug"></param>
+        <param name="Append" value="true"></param>
+        <param name="File" value="logs/debug/teemo_debug.log"></param>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%t] %37c %x: %m%n"></param>
+        </layout>
+    </appender>
+
+    <!-- info -->
+    <appender name="dailyInfoFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="info"></param>
+        <param name="Append" value="true"></param>
+        <param name="File" value="logs/info/teemo_info.log"></param>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%t] %37c %x: %m%n"></param>
+        </layout>
+    </appender>
+
+    <appender name="kafkaAppender" class="com.zero.tech.client.log4j.appender.KafkaAppender">
+        <param name="topic" value="app-log"/>
+        <param name="zkServers" value="192.168.14.111:2181"/>
+        <param name="app" value="xxx"/>
+        <param name="rpc" value="none"/>
+        <param name="mail" value="qqrryu@126.com"/>
+        <param name="bootstrapServers" value="192.168.14.111:9092"/>
+        <param name="acks" value="0"/>
+        <param name="maxBlockMs" value="2000"/>
+        <param name="lingerMs" value="100"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS};APP_NAME;HOSTNAME;%t;%p;%c;%L;%m%n"/>
+        </layout>
+    </appender>
+
+    <!-- error -->
+    <appender name="dailyErrorFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="error"></param>
+        <param name="Append" value="true"></param>
+        <param name="File" value="logs/error/teemo_error.log"></param>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"></param>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%t] %37c %x: %m%n"></param>
+        </layout>
+    </appender>
+
+    <root>
+        <priority value="info"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="dailyInfoFile"/>
+        <appender-ref ref="dailyErrorFile"/>
+        <appender-ref ref="kafkaAppender"/>
+    </root>
+</log4j:configuration>

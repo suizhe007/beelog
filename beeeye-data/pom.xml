@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>beeeye</groupId>
+        <artifactId>beeeye</artifactId>
+        <version>1.3.0</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <artifactId>beeeye-data</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring.version>4.3.10.RELEASE</spring.version>
+        <dbcp.version>2.1.1</dbcp.version>
+        <mysql.version>5.1.43</mysql.version>
+    </properties>
+
+    <modules>
+        <module>beeeye-data-http</module>
+        <module>beeeye-data-jpa</module>
+        <module>beeeye-data-rabbitmq</module>
+    </modules>
+
+    <!-- this section defines the module versions that are used if nothing else is specified. -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>${dbcp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
