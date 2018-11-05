@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@EntityScan("com.jthink.skyeye.data.jpa.domain")
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = { "com.jthink.skyeye.data.jpa.repository" })
+@EntityScan("com.zero.tech.data.jpa.domain")
+@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {"com.zero.tech.data.jpa.repository"})
 public class JpaConfiguration {
 }

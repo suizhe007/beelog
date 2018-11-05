@@ -18,11 +18,11 @@ import java.util.List;
  */
 public interface NameInfoRepository extends CrudRepository<NameInfo, NameInfoPK> {
 
-    @Query(value = "select new com.jthink.skyeye.data.jpa.dto.NameInfoDto(a.nameInfoPK.name, a.nameInfoPK.type, a.app)"
+    @Query(value = "select new com.zero.tech.data.jpa.dto.NameInfoDto(a.nameInfoPK.name, a.nameInfoPK.type, a.app)"
             + "from NameInfo a where a.nameInfoPK.type=?1")
     List<NameInfoDto> findBySql(String type);
 
-    @Query(value = "select new com.jthink.skyeye.data.jpa.dto.NameInfoDto(a.nameInfoPK.name, a.nameInfoPK.type, a.app)"
+    @Query(value = "select new com.zero.tech.data.jpa.dto.NameInfoDto(a.nameInfoPK.name, a.nameInfoPK.type, a.app)"
             + "from NameInfo a where a.nameInfoPK.type=?1 and a.nameInfoPK.name=?2")
     List<NameInfoDto> findBySql(String type, String name);
 

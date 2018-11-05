@@ -62,7 +62,7 @@ public class Launcher {
         String a = "哈哈";
         while (true) {
             LOGGER.info("i am test, {}", a);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         }
     }
 }

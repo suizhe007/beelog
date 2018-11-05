@@ -1,10 +1,10 @@
 package com.zero.tech.monitor.service;
 
+import com.zero.tech.base.constant.Constants;
+import com.zero.tech.base.constant.LogCollectionStatus;
 import com.zero.tech.data.jpa.domain.AppInfo;
 import com.zero.tech.data.jpa.pk.AppInfoPK;
 import com.zero.tech.data.jpa.repository.AppInfoRepository;
-import com.zero.tech.base.constant.Constants;
-import com.zero.tech.base.constant.LogCollectionStatus;
 import org.I0Itec.zkclient.ZkClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,7 @@ public class AppInfoService {
 
     @Autowired
     private ZkClient zkClient;
+
     @Autowired
     private AppInfoRepository appInfoRepository;
 

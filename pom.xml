@@ -75,11 +75,6 @@
             </dependency>
             <dependency>
                 <groupId>beeeye</groupId>
-                <artifactId>beeeye-trace-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>beeeye</groupId>
                 <artifactId>beeeye-client-log4j2</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -91,16 +86,6 @@
             <dependency>
                 <groupId>beeeye</groupId>
                 <artifactId>beeeye-collector-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>beeeye</groupId>
-                <artifactId>beeeye-data-dubbox</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>beeeye</groupId>
-                <artifactId>beeeye-data-dubbo</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

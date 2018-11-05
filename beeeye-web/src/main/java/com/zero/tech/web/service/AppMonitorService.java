@@ -26,7 +26,6 @@ import java.util.Set;
 public class AppMonitorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AppMonitorService.class);
 
-
     @Autowired
     private AppInfoRepository appInfoRepository;
 
