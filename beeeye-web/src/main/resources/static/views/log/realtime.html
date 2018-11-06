@@ -25,9 +25,12 @@
         <button class="btn time-mode-default pull-right time-filter" data-filter="5000">
           <span>5 sec</span>
         </button>
-        <button class="btn time-mode-selected pull-right time-filter current-time-filter" data-filter="1000">
+        <button class="btn time-mode-default pull-right time-filter" data-filter="1000">
           <span>1 sec</span>
         </button>
+      </div>
+      <div class="pull-left item apply">
+        <button class="btn btn-primary pull-right btn-apply" ng-click="clearTimer()">停止</button>
       </div>
     </div>
     <div class="log-content-panel">

@@ -26,8 +26,10 @@ define(['controllers/controllers', 'common/util','common/constant', 'underscore'
         app: $scope.selectedApp,
         interval: gInterval
       };
-      if (gKeyword.trim() !== '') {
+      if (gKeyword != '' && gKeyword.trim() !== '') {
         params = _.extend({keyword: gKeyword.trim()}, params);
+      } else {
+        params = _.extend({keyword: ''}, params);
       }
       DataService.getData(params, function(data) {
         if (data.resCode === constant.resCodeFailed) {
@@ -127,9 +129,7 @@ define(['controllers/controllers', 'common/util','common/constant', 'underscore'
       clear();
     };
 
-    var gTimer = setInterval(function() {
-      $scope.$apply(renderLog);
-    }, gInterval);
+    var gTimer = '';
 
     var setHeight = function() {
       var resize = function() {
@@ -146,11 +146,17 @@ define(['controllers/controllers', 'common/util','common/constant', 'underscore'
       gKeyword = $scope.keyword;
     };
 
+    var clearTimer = function () {
+      clearInterval(gTimer);
+      $('.time-filters .time-filter').removeClass('time-mode-selected current-time-filter').addClass('time-mode-default');
+    }
+
     var initEvent = function() {
       // bind the event
       $scope.hostChange = hostChange;
       $scope.appChange = appChange;
       $scope.apply = apply;
+      $scope.clearTimer = clearTimer;
       $('.time-filter').on('click', function() {
         // time changed
         $('.time-filters .time-filter').removeClass('time-mode-selected current-time-filter').addClass('time-mode-default');
