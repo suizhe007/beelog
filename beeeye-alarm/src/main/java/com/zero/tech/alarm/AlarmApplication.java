@@ -1,4 +1,4 @@
-package com.zero.tech.alarm.launcher;
+package com.zero.tech.alarm;
 
 import com.zero.tech.base.util.Utils;
 import org.slf4j.Logger;
@@ -15,15 +15,15 @@ import java.util.Set;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.zero.tech.alarm", "com.zero.tech.data.rabbitmq"})
-public class AlarmMain {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AlarmMain.class);
+@ComponentScan(basePackages = {"com.zero.tech.alarm", "com.zero.tech.data.redis"})
+public class AlarmApplication {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AlarmApplication.class);
     private static volatile boolean RUNNING = true;
     private static final String STRING_PROFILES_ACTIVE = "spring.profiles.active";
     private static final String STRING_PROFILES_ACTIVE_TEST = "test";
 
     public static void main(String[] args) {
-        SpringApplicationBuilder builder = new SpringApplicationBuilder(AlarmMain.class);
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(AlarmApplication.class);
         Set<ApplicationListener<?>> listeners = builder.application().getListeners();
         for (Iterator<ApplicationListener<?>> it = listeners.iterator(); it.hasNext(); ) {
             ApplicationListener<?> listener = it.next();
@@ -49,17 +49,17 @@ public class AlarmMain {
             @Override
             public void run() {
                 LOGGER.info("try to stop the system");
-                synchronized (AlarmMain.class) {
+                synchronized (AlarmApplication.class) {
                     RUNNING = false;
-                    AlarmMain.class.notify();
+                    AlarmApplication.class.notify();
                 }
             }
         });
 
-        synchronized (AlarmMain.class) {
+        synchronized (AlarmApplication.class) {
             while (RUNNING) {
                 try {
-                    AlarmMain.class.wait();
+                    AlarmApplication.class.wait();
                 } catch (InterruptedException e) {
                     LOGGER.error("wait error", e);
                 }

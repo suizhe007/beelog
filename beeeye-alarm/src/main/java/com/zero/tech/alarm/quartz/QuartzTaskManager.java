@@ -1,5 +1,6 @@
 package com.zero.tech.alarm.quartz;
 
+import com.zero.tech.alarm.configuration.CommonProperties;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
@@ -20,6 +21,8 @@ public class QuartzTaskManager
     private static final Logger logger = LoggerFactory.getLogger(QuartzTaskManager.class);
     private static Set<Object> jobs = new HashSet<Object>();
     private static boolean closeRegister = false;
+    @Autowired
+    private CommonProperties commonProperties;
     @Autowired
     private Scheduler scheduler;
 
@@ -44,7 +47,8 @@ public class QuartzTaskManager
             throws Exception {
         try {
             scheduler.start();
-            scheduler.resumeAll();
+            scheduler.resumeTrigger(new TriggerKey(commonProperties.getAlarmTriggerName(),
+                    commonProperties.getAlarmGroupName()));
         } catch (Exception ex) {
             logger.error("", ex);
             throw ex;
@@ -78,6 +82,7 @@ public class QuartzTaskManager
         try {
             if (scheduler.checkExists(new JobKey(jobName, group)) || scheduler.checkExists(new TriggerKey(triggerName, group))) {
                 //in quartz, one job can be referred by multiple trigger. here for simplify,Make sure job vs trigger = 1:1
+                //这里保证job和trigger是1:1关系
                 return false;
             }
             JobDetail jobDetail = JobBuilder

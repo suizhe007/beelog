@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class AlarmJobConfig
         implements InitializingBean {
     @Autowired
-    CommonProperties commonProperties;
+    private CommonProperties commonProperties;
     @Autowired
     private QuartzTaskManager quartzTaskManager;
 

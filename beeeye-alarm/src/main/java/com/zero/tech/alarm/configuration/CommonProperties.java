@@ -1,7 +1,9 @@
 package com.zero.tech.alarm.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+@Component
 @ConfigurationProperties(prefix = "common")
 public class CommonProperties {
     private String alarmCron;

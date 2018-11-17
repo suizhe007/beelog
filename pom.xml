@@ -28,6 +28,7 @@
         <httpclient.version>4.5.3</httpclient.version>
         <mavencompile.version>3.6.1</mavencompile.version>
         <mavenshade.version>3.0.0</mavenshade.version>
+        <mybatis.version>1.3.2</mybatis.version>
     </properties>
 
     <modules>
@@ -49,8 +50,9 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -105,6 +107,11 @@
             </dependency>
 
             <!--third dependency-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>

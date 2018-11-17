@@ -1,7 +1,9 @@
 package com.zero.tech.alarm.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
+@Component
 @ConfigurationProperties(prefix = "alert.wechat")
 public class WechatProperties {
 

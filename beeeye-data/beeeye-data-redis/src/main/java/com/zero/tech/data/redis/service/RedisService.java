@@ -4,12 +4,14 @@ import com.zero.tech.base.constant.Constants;
 import com.zero.tech.base.dto.MailDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Optional;
 
 import static com.zero.tech.base.constant.RedisKeys.ALARM_EMAIL_QUEUE;
 
+@Component
 public class RedisService {
     @Autowired
     private RedisTemplate redisTemplate;

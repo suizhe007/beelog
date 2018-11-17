@@ -18,6 +18,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class AlarmJob extends AbstractQuartzJob implements ApplicationContextAware {
     private static final Logger LOGGER = LoggerFactory.getLogger(AlarmJob.class);
@@ -38,26 +40,28 @@ public class AlarmJob extends AbstractQuartzJob implements ApplicationContextAwa
     @Override
     protected void doExecution(JobExecutionContext jobExecutionContext) {
         try {
-            MailDto mailDto = redisService.popFromMailQueue().get();
-            if (mailDto != null) {
-                LOGGER.info("get a message, {}", JSON.toJSONString(mailDto));
+            Optional<MailDto> mailDtoOptional = redisService.popFromMailQueue();
+            if (mailDtoOptional.isPresent()) {
+                LOGGER.info("get a message, {}", JSON.toJSONString(mailDtoOptional.get()));
                 // 发送邮件
                 if (this.mailProperties.isSwitchFlag()) {
-                    this.context.getBean(MailService.class).sendMail(mailDto);
+                    this.context.getBean(MailService.class).sendMail(mailDtoOptional.get());
                 }
 
                 // 发送微信
                 if (this.wechatProperties.isSwitchFlag()) {
-                    this.wechatService.send(mailDto.getContent());
+                    this.wechatService.send(mailDtoOptional.get().getContent());
                 }
 
                 // 发送钉钉
                 if (this.dingdingProperties.isSwitchFlag()) {
-                    this.dingDingService.send(mailDto.getContent());
+                    this.dingDingService.send(mailDtoOptional.get().getContent());
                 }
+            } else {
+                LOGGER.info("no message in email queue");
             }
         } catch (Exception e) {
-            LOGGER.info("drop a error message, {}", e);
+            LOGGER.info("drop a error message", e);
         }
     }
 

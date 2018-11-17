@@ -2,10 +2,12 @@ package com.zero.tech.alarm.configuration;
 
 import com.zero.tech.base.constant.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 @ConfigurationProperties(prefix = "mail")
 public class MailProperties {
 
