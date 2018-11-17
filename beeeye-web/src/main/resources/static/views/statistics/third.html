@@ -10,6 +10,12 @@
                 ng-change="realtimeChart.update()">
         </select>
       </div>
+        <div class="pull-left item apply">
+            <button class="btn btn-primary pull-right btn-apply" ng-click="onRealTH()">开始</button>
+        </div>
+        <div class="pull-left item apply">
+            <button class="btn btn-primary pull-right btn-apply" ng-click="clearRealTH()">停止</button>
+        </div>
     </div>
     <div class="panel-body third-content-panel">
       <div id="realtimeChart" class="row">

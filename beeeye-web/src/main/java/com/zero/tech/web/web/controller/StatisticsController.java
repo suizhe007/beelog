@@ -1,7 +1,7 @@
 package com.zero.tech.web.web.controller;
 
-import com.zero.tech.data.jpa.repository.NameInfoRepository;
 import com.zero.tech.base.constant.Constants;
+import com.zero.tech.data.jpa.repository.NameInfoRepository;
 import com.zero.tech.web.message.BaseMessage;
 import com.zero.tech.web.message.MessageCode;
 import com.zero.tech.web.message.StatusCode;
@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("statistics")
 public class StatisticsController {
-
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StatisticsController.class);
 

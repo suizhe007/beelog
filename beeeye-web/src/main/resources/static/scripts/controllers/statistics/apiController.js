@@ -216,6 +216,20 @@ define([
 
           getUniqueNames();
         };
+
+        var clearRealAPI = function () {
+          clearInterval(window.apiRealtimeChartInterval);
+        }
+
+        var onRealAPI = function () {
+          window.apiRealtimeChartInterval = setInterval(function () {
+            $scope.realtimeChart.update();
+            if (location.hash != window.apiHash && window.apiHash) {
+              clearInterval(window.apiRealtimeChartInterval);
+            }
+          }, 1000);
+        }
+        
         var initEvent = function () {
           // bind the event
 
@@ -230,20 +244,15 @@ define([
           $scope.offlineChart = offlineChart;
           $scope.realtimeChart.init();
           $scope.offlineChart.init();
+          $scope.clearRealAPI = clearRealAPI;
 
           window.realtimeChart = realtimeChart;
-          clearInterval(window.apiRealtimeChartInterval);
+          $scope.clearRealAPI();
           window.apiHash = location.hash;
-          window.apiRealtimeChartInterval = setInterval(function () {
-            $scope.realtimeChart.update();
-            if (location.hash != window.apiHash && window.apiHash) {
-              clearInterval(window.apiRealtimeChartInterval);
-            }
-          }, 1000);
+          $scope.onRealAPI = onRealAPI;
 
           $(".scope-filter").click(selectScope);
         };
-
 
         initData();
         initEvent();

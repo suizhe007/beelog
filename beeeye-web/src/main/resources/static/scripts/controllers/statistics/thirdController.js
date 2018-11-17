@@ -198,8 +198,6 @@ define([
           }
         };
 
-
-
         var initData = function () {
           // render data
 
@@ -215,6 +213,20 @@ define([
 
           getUniqueNames();
         };
+
+        var clearRealTH = function () {
+          clearInterval(window.thirdRealtimeChartInterval);
+        }
+
+        var onRealTH = function () {
+          window.thirdRealtimeChartInterval = setInterval(function () {
+            $scope.realtimeChart.update();
+            if (location.hash != window.thirdHash && window.thirdHash) {
+              clearInterval(window.thirdRealtimeChartInterval);
+            }
+          }, 1000);
+        }
+
         var initEvent = function () {
           // bind the event
 
@@ -224,27 +236,19 @@ define([
             $scope[name] = true;
           };
 
-
           $scope.realtimeChart = realtimeChart;
           $scope.offlineChart = offlineChart;
           $scope.realtimeChart.init();
           $scope.offlineChart.init();
+          $scope.clearRealTH = clearRealTH;
+          $scope.onRealTH = onRealTH;
 
+          $scope.clearRealTH();
           $scope.realtimeChart = realtimeChart;
-          //window.clearInterval(window.realtimeChartInterval);
-          //window.realtimeChartInterval = setInterval("window.realtimeChart.update();", 1000);
-          clearInterval(window.thirdRealtimeChartInterval);
           window.thirdHash = location.hash;
-          window.thirdRealtimeChartInterval = setInterval(function () {
-            $scope.realtimeChart.update();
-            if (location.hash != window.thirdHash && window.thirdHash) {
-              clearInterval(window.thirdRealtimeChartInterval);
-            }
-          }, 1000);
 
           $(".scope-filter").click(selectScope);
         };
-
 
         initData();
         initEvent();
