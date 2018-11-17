@@ -3,7 +3,7 @@ package com.zero.tech.collector.metrics.task.job;
 import com.zero.tech.base.constant.EventType;
 import com.zero.tech.collector.core.configuration.es.EsProperties;
 import com.zero.tech.collector.metrics.cache.CacheService;
-import com.zero.tech.data.rabbitmq.service.RabbitmqService;
+import com.zero.tech.data.redis.service.RedisService;
 import org.I0Itec.zkclient.ZkClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.List;
 public class JobConfiguration {
 
     @Autowired
-    private RabbitmqService rabbitmqService;
+    private RedisService redisService;
     @Autowired
     private ZkClient zkClient;
     @Autowired
@@ -40,7 +40,7 @@ public class JobConfiguration {
     public ExceptionProcessor exceptionProcessor() {
         List<EventType> exceptionProcesses = Arrays.asList(EventType.job_execute, EventType.thirdparty_call, EventType.middleware_opt, EventType.invoke_interface);
         ExceptionProcessor exceptionProcessor = new ExceptionProcessor(exceptionProcesses);
-        exceptionProcessor.setRabbitmqService(this.rabbitmqService);
+        exceptionProcessor.setRedisService(this.redisService);
         exceptionProcessor.setZkClient(this.zkClient);
         return exceptionProcessor;
     }

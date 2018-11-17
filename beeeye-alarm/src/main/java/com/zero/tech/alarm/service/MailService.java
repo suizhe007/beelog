@@ -1,6 +1,6 @@
 package com.zero.tech.alarm.service;
 
-import com.zero.tech.alarm.configuration.mail.MailProperties;
+import com.zero.tech.alarm.configuration.MailProperties;
 import com.zero.tech.base.constant.Constants;
 import com.zero.tech.base.dto.FileDto;
 import com.zero.tech.base.dto.MailDto;

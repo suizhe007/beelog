@@ -1,7 +1,7 @@
 package com.zero.tech.alarm.service;
 
 import com.alibaba.fastjson.JSON;
-import com.zero.tech.alarm.configuration.dingding.DingdingProperties;
+import com.zero.tech.alarm.configuration.DingdingProperties;
 import com.zero.tech.alarm.dto.DingDingDto;
 import com.zero.tech.data.http.HttpRequest;
 import org.slf4j.Logger;

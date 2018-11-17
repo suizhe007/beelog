@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.logging.LoggingApplicationListener;
+import org.springframework.boot.context.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationListener;
 
 import java.util.Iterator;
@@ -48,7 +48,7 @@ public class Launcher {
     public static void main(String[] args) throws InterruptedException {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(Launcher.class);
         Set<ApplicationListener<?>> listeners = builder.application().getListeners();
-        for (Iterator<ApplicationListener<?>> it = listeners.iterator(); it.hasNext();) {
+        for (Iterator<ApplicationListener<?>> it = listeners.iterator(); it.hasNext(); ) {
             ApplicationListener<?> listener = it.next();
             if (listener instanceof LoggingApplicationListener) {
                 it.remove();

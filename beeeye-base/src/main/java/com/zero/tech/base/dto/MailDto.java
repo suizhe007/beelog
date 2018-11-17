@@ -3,16 +3,7 @@ package com.zero.tech.base.dto;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-09-23 16:59:39
- */
 public class MailDto implements Serializable {
-
     private static final long serialVersionUID = 7447491327917924454L;
 
     // 附件文件
@@ -25,7 +16,6 @@ public class MailDto implements Serializable {
     private List<String> to;
 
     public MailDto() {
-
     }
 
     public MailDto(List<FileDto> files, String subject, String content, List<String> to) {

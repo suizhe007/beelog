@@ -1,7 +1,7 @@
 package com.zero.tech.monitor.service;
 
 import com.zero.tech.base.constant.Constants;
-import com.zero.tech.data.rabbitmq.service.RabbitmqService;
+import com.zero.tech.data.redis.service.RedisService;
 import com.zero.tech.monitor.listener.ScrollChildrenChangeListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.curator.framework.CuratorFramework;
@@ -23,7 +23,7 @@ public class AppStatusMonitorService {
     @Autowired
     private CuratorFramework curatorFramework;
     @Autowired
-    private RabbitmqService rabbitmqService;
+    private RedisService redisService;
     @Autowired
     private ZkClient zkClient;
     @Autowired
@@ -32,6 +32,6 @@ public class AppStatusMonitorService {
     public void init() throws Exception {
         PathChildrenCache pathChildrenCache = new PathChildrenCache(curatorFramework, Constants.ROOT_PATH_EPHEMERAL, true);
         pathChildrenCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
-        pathChildrenCache.getListenable().addListener(new ScrollChildrenChangeListener(this.rabbitmqService, this.zkClient, this.appInfoService));
+        pathChildrenCache.getListenable().addListener(new ScrollChildrenChangeListener(this.redisService, this.zkClient, this.appInfoService));
     }
 }

@@ -6,7 +6,7 @@ import com.zero.tech.base.dto.AlertDto;
 import com.zero.tech.base.dto.ApiLog;
 import com.zero.tech.base.dto.EventLog;
 import com.zero.tech.base.dto.LogDto;
-import com.zero.tech.data.rabbitmq.service.RabbitmqService;
+import com.zero.tech.data.redis.service.RedisService;
 import org.I0Itec.zkclient.ZkClient;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class ExceptionProcessor extends Job {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionProcessor.class);
 
-    private RabbitmqService rabbitmqService;
+    private RedisService redisService;
 
     private ZkClient zkClient;
 
@@ -48,11 +48,11 @@ public class ExceptionProcessor extends Job {
                     ApiLog apiLog = (ApiLog) log;
                     String info = this.buildMsg(this.getTime(logDto.getDay(), logDto.getTime()), app, host, datas[1], this.buildInfo(type, apiLog.getUniqueName(), apiLog.getStatus()));
                     LOGGER.info("发送一条报警\n, {}", info);
-                    this.rabbitmqService.sendMessage(info, datas[0]);
+                    this.redisService.sendMessage(info, datas[0]);
                 } else {
                     String info = this.buildMsg(this.getTime(logDto.getDay(), logDto.getTime()), app, host, datas[1], this.buildInfo(type, log.getUniqueName(), log.getStatus()));
                     LOGGER.info("发送一条报警\n, {}", info);
-                    this.rabbitmqService.sendMessage(info, datas[0]);
+                    this.redisService.sendMessage(info, datas[0]);
                 }
             }
         }
@@ -65,6 +65,7 @@ public class ExceptionProcessor extends Job {
 
     /**
      * 构造具体的报警信息
+     *
      * @param type
      * @param name
      * @param status
@@ -84,6 +85,7 @@ public class ExceptionProcessor extends Job {
 
     /**
      * 构造报警msg
+     *
      * @param time
      * @param app
      * @param host
@@ -98,6 +100,7 @@ public class ExceptionProcessor extends Job {
 
     /**
      * 根据给定的day和time返回时间（2016-11-23 16:42:40）
+     *
      * @param day
      * @param time
      * @return
@@ -106,12 +109,12 @@ public class ExceptionProcessor extends Job {
         return day + Constants.SPACE + time.substring(0, time.lastIndexOf(Constants.POINT));
     }
 
-    public RabbitmqService getRabbitmqService() {
-        return rabbitmqService;
+    public RedisService getRedisService() {
+        return redisService;
     }
 
-    public void setRabbitmqService(RabbitmqService rabbitmqService) {
-        this.rabbitmqService = rabbitmqService;
+    public void setRedisService(RedisService rabbitmqService) {
+        this.redisService = rabbitmqService;
     }
 
     public ZkClient getZkClient() {

@@ -59,7 +59,7 @@
         </dependency>
         <dependency>
             <groupId>beeeye</groupId>
-            <artifactId>beeeye-data-rabbitmq</artifactId>
+            <artifactId>beeeye-data-redis</artifactId>
             <exclusions>
                 <exclusion>
                     <artifactId>slf4j-log4j12</artifactId>

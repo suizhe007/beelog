@@ -11,7 +11,7 @@ import com.zero.tech.data.jpa.domain.NameInfo;
 import com.zero.tech.data.jpa.dto.NameInfoDto;
 import com.zero.tech.data.jpa.repository.MonitorTemplateRepository;
 import com.zero.tech.data.jpa.repository.NameInfoRepository;
-import com.zero.tech.data.rabbitmq.service.RabbitmqService;
+import com.zero.tech.data.redis.service.RedisService;
 import com.zero.tech.web.constant.EsSqlTemplate;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public class MonitorTask {
     private static final Logger LOGGER = LoggerFactory.getLogger(MonitorTask.class);
 
     @Autowired
-    private RabbitmqService rabbitmqService;
+    private RedisService redisService;
     @Autowired
     private NameInfoRepository nameInfoRepository;
     @Autowired
@@ -60,6 +60,7 @@ public class MonitorTask {
 
     /**
      * 根据传递的sql语句查询es
+     *
      * @param sql
      * @return
      */
@@ -91,7 +92,7 @@ public class MonitorTask {
 
             // 获取当前的数据，超过响应时间的和不超过的，方便计算占比
             Map<String, Integer> totalInfos = this.parseRealtimeData(this.query(this.buildSql(timestamp, window)), scope);
-            Map<String, Integer> infos = this.parseRealtimeData(this.query(this.buildSql(timestamp, cost , window)), scope);
+            Map<String, Integer> infos = this.parseRealtimeData(this.query(this.buildSql(timestamp, cost, window)), scope);
 
             // 计算阈值进行报警
             for (Map.Entry<String, Integer> entry : infos.entrySet()) {
@@ -109,7 +110,7 @@ public class MonitorTask {
                         if (apis.size() != 0) {
                             app = apis.get(0).getApp() + Constants.JING_HAO + uniqueName;
                         }
-                        this.rabbitmqService.sendMessage(this.buildMsg(uniqueName, window, cost, threshold, th, totalInfos.get(uniqueName), timestamp, app), this.mail);
+                        this.redisService.sendMessage(this.buildMsg(uniqueName, window, cost, threshold, th, totalInfos.get(uniqueName), timestamp, app), this.mail);
                     }
                 }
             }
@@ -121,6 +122,7 @@ public class MonitorTask {
 
     /**
      * 构造sql
+     *
      * @param timestamp
      * @param responseTime
      * @param window
@@ -134,6 +136,7 @@ public class MonitorTask {
 
     /**
      * 构造sql
+     *
      * @param timestamp
      * @param window
      * @return
@@ -145,6 +148,7 @@ public class MonitorTask {
 
     /**
      * 构造dto以及msg
+     *
      * @param uniqueName
      * @param window
      * @param cost
@@ -171,6 +175,7 @@ public class MonitorTask {
 
     /**
      * 对List进行转换
+     *
      * @param nameInfos
      * @return
      */
@@ -184,11 +189,12 @@ public class MonitorTask {
 
     /**
      * 根据es sql返回的结果进行解析
+     *
      * @param response
      * @return
      */
     private Map<String, Integer> parseRealtimeData(String response, String scope) {
-        Map<String , Integer> apps = new HashMap<String, Integer>();
+        Map<String, Integer> apps = new HashMap<String, Integer>();
         if (null == response) {
             // 错误
             return apps;
@@ -196,7 +202,7 @@ public class MonitorTask {
             JSONObject json = JSON.parseObject(response);
             Iterator<Object> iterator = json.getJSONObject("aggregations").getJSONObject(scope).getJSONArray("buckets").iterator();
             while (iterator.hasNext()) {
-                JSONObject jsonObject = ((JSONObject)iterator.next());
+                JSONObject jsonObject = ((JSONObject) iterator.next());
                 String app = jsonObject.getString("key");
                 int cnt = jsonObject.getIntValue("doc_count");
                 apps.put(app, cnt);
@@ -207,6 +213,7 @@ public class MonitorTask {
 
     /**
      * 根据时间戳获取结束时间
+     *
      * @param timestamp
      * @return
      */
@@ -217,6 +224,7 @@ public class MonitorTask {
 
     /**
      * 根据时间戳获取开始时间
+     *
      * @param timestamp
      * @param window
      * @return

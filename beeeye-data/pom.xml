@@ -25,7 +25,7 @@
     <modules>
         <module>beeeye-data-http</module>
         <module>beeeye-data-jpa</module>
-        <module>beeeye-data-rabbitmq</module>
+        <module>beeeye-data-redis</module>
     </modules>
 
     <!-- this section defines the module versions that are used if nothing else is specified. -->

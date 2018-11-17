@@ -4,7 +4,7 @@ import com.zero.tech.base.constant.Constants;
 import com.zero.tech.base.constant.LogCollectionStatus;
 import com.zero.tech.base.dto.AlertDto;
 import com.zero.tech.base.util.DateUtil;
-import com.zero.tech.data.rabbitmq.service.RabbitmqService;
+import com.zero.tech.data.redis.service.RedisService;
 import com.zero.tech.monitor.service.AppInfoService;
 import com.zero.tech.monitor.service.CacheService;
 import org.I0Itec.zkclient.ZkClient;
@@ -28,14 +28,14 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppChildrenChangeListener.class);
 
-    private RabbitmqService rabbitmqService;
+    private RedisService redisService;
 
     private ZkClient zkClient;
 
     private AppInfoService appInfoService;
 
-    public AppChildrenChangeListener(RabbitmqService rabbitmqService, ZkClient zkClient, AppInfoService appInfoService) {
-        this.rabbitmqService = rabbitmqService;
+    public AppChildrenChangeListener(RedisService rabbitmqService, ZkClient zkClient, AppInfoService appInfoService) {
+        this.redisService = rabbitmqService;
         this.zkClient = zkClient;
         this.appInfoService = appInfoService;
     }
@@ -59,7 +59,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
                             this.getHost(node), datas[1], Constants.APP_START);
 
                     // add to the queue
-                    this.rabbitmqService.sendMessage(info, datas[0]);
+                    this.redisService.sendMessage(info, datas[0]);
                     LOGGER.info(info);
                     CacheService.appHosts.add(node);
                     this.appInfoService.add(host, app, Constants.ZK_NODE_TYPE_EPHEMERAL, this.calLogCollectionStatus(app, host));
@@ -76,7 +76,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
                         this.getHost(node), datas[1], Constants.APP_STOP);
 
                 // add to the queue
-                this.rabbitmqService.sendMessage(info, datas[0]);
+                this.redisService.sendMessage(info, datas[0]);
                 LOGGER.info(info);
                 if (CacheService.appHosts.contains(node)) {
                     CacheService.appHosts.remove(node);
@@ -102,7 +102,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
                         this.getHost(node), datas[2], detail);
 
                 // add to the queue
-                this.rabbitmqService.sendMessage(info, this.zkClient.readData(Constants.ROOT_PATH_PERSISTENT + Constants.SLASH + app + Constants.SLASH + host).toString().split(Constants.SEMICOLON)[0]);
+                this.redisService.sendMessage(info, this.zkClient.readData(Constants.ROOT_PATH_PERSISTENT + Constants.SLASH + app + Constants.SLASH + host).toString().split(Constants.SEMICOLON)[0]);
                 LOGGER.info(info);
                 this.appInfoService.update(host, app, Constants.ZK_NODE_TYPE_EPHEMERAL, status);
                 break;
@@ -111,6 +111,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     /**
      * 根据node获取app
+     *
      * @param node
      * @return
      */
@@ -121,6 +122,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     /**
      * 根据node获取host
+     *
      * @param node
      * @return
      */
@@ -130,6 +132,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     /**
      * 返回末尾字符串
+     *
      * @param line
      * @return
      */
@@ -139,6 +142,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     /**
      * 构造报警msg
+     *
      * @param time
      * @param app
      * @param host
@@ -153,6 +157,7 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     /**
      * 根据app和host计算LogCollectionStatus
+     *
      * @param app
      * @param host
      * @return

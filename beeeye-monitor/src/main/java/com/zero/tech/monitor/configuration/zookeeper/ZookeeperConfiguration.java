@@ -9,14 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc zk的配置
- * @date 2016-09-23 08:45:53
- */
 @Configuration
 @ConfigurationProperties(prefix = "coordinate.zookeeper")
 public class ZookeeperConfiguration {

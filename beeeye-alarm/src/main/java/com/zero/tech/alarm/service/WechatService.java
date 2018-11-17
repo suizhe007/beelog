@@ -1,6 +1,6 @@
 package com.zero.tech.alarm.service;
 
-import com.zero.tech.alarm.configuration.wechat.WechatProperties;
+import com.zero.tech.alarm.configuration.WechatProperties;
 import com.zero.tech.data.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

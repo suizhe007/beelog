@@ -1,5 +1,6 @@
-package com.zero.tech.monitor.launcher;
+package com.zero.tech.alarm.launcher;
 
+import com.zero.tech.base.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,31 +9,21 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 
 import java.util.Iterator;
 import java.util.Set;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc 项目启动器
- * @date 2016-08-24 18:31:48
- */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.zero.tech.monitor", "com.zero.tech.data.jpa", "com.zero.tech.data.rabbitmq"})
-//@PropertySource("file:/opt/skyeye/config/alarm/monitor.properties")
-@PropertySource("classpath:properties/monitor-dev.properties")
-public class Launcher {
-
+@ComponentScan(basePackages = {"com.zero.tech.alarm", "com.zero.tech.data.rabbitmq"})
+public class AlarmMain {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AlarmMain.class);
     private static volatile boolean RUNNING = true;
-    private static final Logger LOGGER = LoggerFactory.getLogger(Launcher.class);
+    private static final String STRING_PROFILES_ACTIVE = "spring.profiles.active";
+    private static final String STRING_PROFILES_ACTIVE_TEST = "test";
 
     public static void main(String[] args) {
-        SpringApplicationBuilder builder = new SpringApplicationBuilder(Launcher.class);
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(AlarmMain.class);
         Set<ApplicationListener<?>> listeners = builder.application().getListeners();
         for (Iterator<ApplicationListener<?>> it = listeners.iterator(); it.hasNext(); ) {
             ApplicationListener<?> listener = it.next();
@@ -42,27 +33,35 @@ public class Launcher {
         }
         builder.application().setListeners(listeners);
         builder.run(args);
-        LOGGER.info("monitor start successfully");
+        if (Utils.isNullOrEmpty(System.getProperty(STRING_PROFILES_ACTIVE))) {
+            LOGGER.info("current environment is develop environment");
+        } else {
+            if (STRING_PROFILES_ACTIVE_TEST.equals(System.getProperty(STRING_PROFILES_ACTIVE))) {
+                LOGGER.info("current environment is test environment");
+            } else {
+                LOGGER.info("current environment is production environment");
+            }
+        }
+        LOGGER.info("alarm start successfully");
 
         // 优雅停止项目
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 LOGGER.info("try to stop the system");
-                synchronized (Launcher.class) {
+                synchronized (AlarmMain.class) {
                     RUNNING = false;
-                    Launcher.class.notify();
+                    AlarmMain.class.notify();
                 }
             }
         });
 
-        synchronized (Launcher.class) {
+        synchronized (AlarmMain.class) {
             while (RUNNING) {
                 try {
-                    Launcher.class.wait();
+                    AlarmMain.class.wait();
                 } catch (InterruptedException e) {
-                    LOGGER.error("wait error");
-                    e.printStackTrace();
+                    LOGGER.error("wait error", e);
                 }
             }
         }
