@@ -5,9 +5,15 @@ cur=`dirname "$cur"`
 #config
 app="alarm"
 appMainClass=com.zero.tech.alarm.AlarmApplication
-APP_HOME="ALARM_HOME"
+
 export ALARM_HOME="$cur"
-export JAVA_HOME=/usr/local/jdk
+APP_HOME="$ALARM_HOME"
+javaHome=$JAVA_HOME
+if [[ -z "$javaHome" ]]; then
+    echo "JAVA_HOME not set in environment"
+    exit 1
+fi
+
 
 if [[ ! -e "${APP_HOME}/logs" ]]; then
     mkdir ${APP_HOME}/logs
