@@ -1,12 +1,8 @@
-package com.zero.tech.data.jpa.domain;
+package com.zero.tech.data.db.domain;
 
 import javax.persistence.*;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 监控模板, 一段时间内(window, 时间窗口)响应时间超过某个阈值(cost)的量占总量的百分比大于某一个值(threshold)，进行报警
  * @date 2017-12-08 09:57:28
  */

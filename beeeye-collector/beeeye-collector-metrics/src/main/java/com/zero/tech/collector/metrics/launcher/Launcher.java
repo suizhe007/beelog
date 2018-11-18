@@ -27,7 +27,7 @@ import java.util.Set;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.zero.tech.collector.core", "com.zero.tech.collector.metrics", "com.zero.tech.data.rabbitmq", "com.zero.tech.data.jpa"})
+@ComponentScan(basePackages = {"com.zero.tech.collector.core", "com.zero.tech.collector.metrics", "com.zero.tech.data.rabbitmq", "com.zero.tech.data.db"})
 //@PropertySource("file:/opt/jthink/jthink-config/skyeye/collector/collector-metrics.properties")
 @PropertySource("classpath:properties/collector-metrics-dev.properties")
 public class Launcher {

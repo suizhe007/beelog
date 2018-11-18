@@ -5,12 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.zero.tech.base.constant.Constants;
 import com.zero.tech.base.dto.AlertDto;
 import com.zero.tech.base.util.DateUtil;
+import com.zero.tech.data.db.domain.MonitorTemplate;
+import com.zero.tech.data.db.domain.NameInfo;
+import com.zero.tech.data.db.dto.NameInfoDto;
+import com.zero.tech.data.db.mapper.MonitorTempleteMapper;
+import com.zero.tech.data.db.mapper.NameInfoMapper;
 import com.zero.tech.data.http.HttpRequest;
-import com.zero.tech.data.jpa.domain.MonitorTemplate;
-import com.zero.tech.data.jpa.domain.NameInfo;
-import com.zero.tech.data.jpa.dto.NameInfoDto;
-import com.zero.tech.data.jpa.repository.MonitorTemplateRepository;
-import com.zero.tech.data.jpa.repository.NameInfoRepository;
 import com.zero.tech.data.redis.service.RedisService;
 import com.zero.tech.web.constant.EsSqlTemplate;
 import org.joda.time.DateTime;
@@ -23,12 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.StopWatch;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * JThink@JThink
@@ -48,9 +43,9 @@ public class MonitorTask {
     @Autowired
     private RedisService redisService;
     @Autowired
-    private NameInfoRepository nameInfoRepository;
+    private NameInfoMapper nameInfoMapper;
     @Autowired
-    private MonitorTemplateRepository monitorTemplateRepository;
+    private MonitorTempleteMapper monitorTempleteMapper;
 
     private String mail;
     private String url;
@@ -81,10 +76,10 @@ public class MonitorTask {
         long timestamp = System.currentTimeMillis();
 
         // 查询出所有当前以及存在的报警模板
-        List<MonitorTemplate> templates = this.monitorTemplateRepository.findAll();
+        List<MonitorTemplate> templates = monitorTempleteMapper.findAll();
         for (MonitorTemplate template : templates) {
             // 对每个模板里面包含的具体内容进行报警
-            Set<String> names = this.transform(this.nameInfoRepository.findByTid(template.getId()));
+            Set<String> names = this.transform(nameInfoMapper.findByTid(template.getId()));
 
             String cost = template.getCost();
             double threshold = template.getThreshold();
@@ -105,7 +100,7 @@ public class MonitorTask {
                         // 超过阈值，需要报警
                         LOGGER.info("{} 需要报警", uniqueName);
                         // 如果是api的需要在app上加一个
-                        List<NameInfoDto> apis = this.nameInfoRepository.findBySql(Constants.API, uniqueName);
+                        List<NameInfoDto> apis = nameInfoMapper.findByTypeName(Constants.API, uniqueName);
                         String app = uniqueName;
                         if (apis.size() != 0) {
                             app = apis.get(0).getApp() + Constants.JING_HAO + uniqueName;

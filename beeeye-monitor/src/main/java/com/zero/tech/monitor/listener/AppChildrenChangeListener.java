@@ -17,12 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 监听临时节点变化
- * @date 2016-09-23 11:33:05
  */
 public class AppChildrenChangeListener implements PathChildrenCacheListener {
 

@@ -1,12 +1,7 @@
-package com.zero.tech.data.jpa.dto;
+package com.zero.tech.data.db.dto;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc name info dto
- * @date 2016-11-17 09:17:19
  */
 public class NameInfoDto {
 

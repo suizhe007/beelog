@@ -1,7 +1,7 @@
 package com.zero.tech.web.web.controller;
 
 import com.zero.tech.base.constant.Constants;
-import com.zero.tech.data.jpa.repository.NameInfoRepository;
+import com.zero.tech.data.db.mapper.NameInfoMapper;
 import com.zero.tech.web.message.BaseMessage;
 import com.zero.tech.web.message.MessageCode;
 import com.zero.tech.web.message.StatusCode;
@@ -33,14 +33,14 @@ public class StatisticsController {
     private StatisticsService statisticsService;
 
     @Autowired
-    private NameInfoRepository nameInfoRepository;
+    private NameInfoMapper nameInfoMapper;
 
     @RequestMapping(path = "names", method = RequestMethod.GET)
     public BaseMessage names(@RequestParam(value = "eventType", required = false) final String eventType) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
-            msg.setData(nameInfoRepository.findBySql(eventType));
+            msg.setData(nameInfoMapper.findByType(eventType));
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error("查询统计类目名称失败。");

@@ -1,6 +1,6 @@
-package com.zero.tech.data.jpa.domain;
+package com.zero.tech.data.db.domain;
 
-import com.zero.tech.data.jpa.pk.NameInfoPK;
+import com.zero.tech.data.db.pk.NameInfoPK;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

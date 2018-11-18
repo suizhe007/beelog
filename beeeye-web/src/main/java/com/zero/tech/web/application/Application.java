@@ -23,7 +23,7 @@ import java.util.Set;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.zero.tech.web", "com.zero.tech.data.jpa", "com.zero.tech.data.rabbitmq"})
+@ComponentScan(basePackages = {"com.zero.tech.web", "com.zero.tech.data.db", "com.zero.tech.data.rabbitmq"})
 //@PropertySource("file:/opt/jthink/jthink-config/skyeye/web/web.properties")
 @PropertySource("classpath:properties/web-dev.properties")
 public class Application {

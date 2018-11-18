@@ -2,9 +2,8 @@ package com.zero.tech.monitor.service;
 
 import com.zero.tech.base.constant.Constants;
 import com.zero.tech.base.constant.LogCollectionStatus;
-import com.zero.tech.data.jpa.domain.AppInfo;
-import com.zero.tech.data.jpa.pk.AppInfoPK;
-import com.zero.tech.data.jpa.repository.AppInfoRepository;
+import com.zero.tech.data.db.domain.AppInfo;
+import com.zero.tech.data.db.mapper.AppInfoMapper;
 import org.I0Itec.zkclient.ZkClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class AppInfoService {
     private ZkClient zkClient;
 
     @Autowired
-    private AppInfoRepository appInfoRepository;
+    private AppInfoMapper appInfoMapper;
 
     /**
      * 保存appInfo
@@ -28,15 +27,16 @@ public class AppInfoService {
      */
     public void add(String host, String app, int type, LogCollectionStatus logCollectionStatus) {
         AppInfo appInfo = new AppInfo();
-        AppInfoPK appInfoPK = new AppInfoPK(host, app, type);
-        appInfo.setAppInfoPK(appInfoPK);
+        appInfo.setHost(host);
+        appInfo.setApp(app);
+        appInfo.setType(type);
         appInfo.setStatus(logCollectionStatus.symbol());
         if (logCollectionStatus.symbol().equals(LogCollectionStatus.HISTORY.symbol())) {
             appInfo.setDeploy(this.getDeploy(Constants.ROOT_PATH_PERSISTENT + Constants.SLASH + app + Constants.SLASH + host));
         } else {
             appInfo.setDeploy(this.getDeploy(Constants.ROOT_PATH_EPHEMERAL + Constants.SLASH + app + Constants.SLASH + host));
         }
-        this.appInfoRepository.save(appInfo);
+        appInfoMapper.save(appInfo);
     }
 
     /**
@@ -48,9 +48,9 @@ public class AppInfoService {
      * @param logCollectionStatus
      */
     public void update(String host, String app, int type, LogCollectionStatus logCollectionStatus) {
-        AppInfo appInfo = this.appInfoRepository.findById(new AppInfoPK(host, app, type)).get();
+        AppInfo appInfo = appInfoMapper.findAppInfoByPK(host, app, type);
         appInfo.setStatus(logCollectionStatus.symbol());
-        this.appInfoRepository.save(appInfo);
+        appInfoMapper.save(appInfo);
     }
 
     /**
@@ -61,9 +61,9 @@ public class AppInfoService {
      * @param type
      */
     public void delete(String host, String app, int type) {
-        AppInfo appInfo = this.appInfoRepository.findById(new AppInfoPK(host, app, type)).get();
+        AppInfo appInfo = appInfoMapper.findAppInfoByPK(host, app, type);
         if (null != appInfo) {
-            this.appInfoRepository.delete(appInfo);
+            appInfoMapper.delete(appInfo);
         }
     }
 
@@ -71,7 +71,7 @@ public class AppInfoService {
      * 删除所有的数据
      */
     public void deleteAll() {
-        this.appInfoRepository.deleteAll();
+        appInfoMapper.deleteAll();
     }
 
     /**

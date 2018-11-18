@@ -1,13 +1,5 @@
-package com.zero.tech.data.jpa.dto;
+package com.zero.tech.data.db.dto;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-10-09 21:09:37
- */
 public class AppStatusDto {
 
     private String host;

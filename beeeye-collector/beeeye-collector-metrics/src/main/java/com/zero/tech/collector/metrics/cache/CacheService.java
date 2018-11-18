@@ -2,8 +2,8 @@ package com.zero.tech.collector.metrics.cache;
 
 import com.zero.tech.base.constant.Constants;
 import com.zero.tech.base.constant.NameInfoType;
-import com.zero.tech.data.jpa.domain.NameInfo;
-import com.zero.tech.data.jpa.repository.NameInfoRepository;
+import com.zero.tech.data.db.domain.NameInfo;
+import com.zero.tech.data.db.mapper.NameInfoMapper;
 import org.apache.commons.lang.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 缓存名称采集相关的数据
- * @date 2016-11-22 09:23:19
  */
 @Service
 public class CacheService implements InitializingBean {
@@ -32,7 +27,7 @@ public class CacheService implements InitializingBean {
     private static Logger LOGGER = LoggerFactory.getLogger(CacheService.class);
 
     @Autowired
-    private NameInfoRepository nameInfoRepository;
+    private NameInfoMapper nameInfoMapper;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -55,14 +50,16 @@ public class CacheService implements InitializingBean {
 
     /**
      * 保存
+     *
      * @param nameInfo
      */
     public void save(NameInfo nameInfo) {
-        this.nameInfoRepository.save(nameInfo);
+        nameInfoMapper.save(nameInfo);
     }
 
     /**
      * 根据采集的类型和值存入redis
+     *
      * @param type
      * @param value
      * @return
@@ -73,6 +70,7 @@ public class CacheService implements InitializingBean {
 
     /**
      * 根据采集的类型和值判断是否存在
+     *
      * @param type
      * @param value
      * @return
@@ -89,9 +87,9 @@ public class CacheService implements InitializingBean {
         sw.start();
         LOGGER.info("start load config to cache");
 
-        Iterable<NameInfo> nameInfos = this.nameInfoRepository.findAll();
+        Iterable<NameInfo> nameInfos = nameInfoMapper.findAll();
 
-        for (Iterator<NameInfo> it = nameInfos.iterator(); it.hasNext();) {
+        for (Iterator<NameInfo> it = nameInfos.iterator(); it.hasNext(); ) {
             NameInfo nameInfo = it.next();
             this.setOps.add(mapping.get(nameInfo.getNameInfoPK().getType()), nameInfo.getNameInfoPK().getName());
         }
