@@ -59,7 +59,7 @@ run()
     echo $!
 }
 
-pid=`ps -ef |grep -v auto |grep -v grep| grep $app-gc.log | awk '{print $2}'`
+pid=`ps -ef |grep -v grep| grep $app-gc.log | awk '{print $2}'`
 
 if [[ "$command" = "stop" ]]; then
   if [[ -n $pid ]]; then
@@ -75,11 +75,11 @@ elif [[ "$command" = "restart" ]]; then
     kill $pid
   fi
   count=0
-  pdc=`ps -ef |grep -v auto |grep -v grep| grep $app-gc.log | awk '{print $2}'|wc -l`
+  pdc=`ps -ef |grep -v grep| grep $app-gc.log | awk '{print $2}'|wc -l`
   while(( $count<=30 )) && ((pdc>0))
   do
    let 'count++'
-   pdc=`ps -ef |grep -v auto |grep -v grep| grep $app-gc.log | awk '{print $2}'|wc -l`
+   pdc=`ps -ef |grep -v grep| grep $app-gc.log | awk '{print $2}'|wc -l`
    echo $pdc
    sleep 1
   done
