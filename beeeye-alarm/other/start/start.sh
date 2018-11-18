@@ -68,7 +68,6 @@ if [[ "$command" = "stop" ]]; then
   else
     echo "$app has stopped"
   fi
-  sleep 10
 elif [[ "$command" = "restart" ]]; then
   echo "stoping $app....."
   if [[ -n $pid ]]; then
@@ -83,7 +82,7 @@ elif [[ "$command" = "restart" ]]; then
    echo $pdc
    sleep 1
   done
-  sleep 2
+  sleep 1
   echo "start $app....."
   run
 elif [[ "$command" = "start" ]]; then
