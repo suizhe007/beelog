@@ -10,37 +10,12 @@ import java.util.List;
 @Component
 @ConfigurationProperties(prefix = "mail")
 public class MailProperties {
-
-    private String smtphost;
-
-    private String port;
-
     private String from;
-
     private String cc;
-
-    private String password;
-
     private boolean switchFlag;
 
     public List<String> getCcs() {
         return Arrays.asList(cc.split(Constants.COMMA));
-    }
-
-    public String getSmtphost() {
-        return smtphost;
-    }
-
-    public void setSmtphost(String smtphost) {
-        this.smtphost = smtphost;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
     }
 
     public String getFrom() {
@@ -57,14 +32,6 @@ public class MailProperties {
 
     public void setCc(String cc) {
         this.cc = cc;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isSwitchFlag() {

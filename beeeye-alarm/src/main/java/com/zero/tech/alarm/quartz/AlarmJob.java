@@ -12,18 +12,14 @@ import com.zero.tech.data.redis.service.RedisService;
 import org.quartz.JobExecutionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class AlarmJob extends AbstractQuartzJob implements ApplicationContextAware {
+public class AlarmJob extends AbstractQuartzJob {
     private static final Logger LOGGER = LoggerFactory.getLogger(AlarmJob.class);
-    private ApplicationContext context;
     @Autowired
     private WechatService wechatService;
     @Autowired
@@ -36,6 +32,8 @@ public class AlarmJob extends AbstractQuartzJob implements ApplicationContextAwa
     private DingdingProperties dingdingProperties;
     @Autowired
     private MailProperties mailProperties;
+    @Autowired
+    private MailService mailService;
 
     @Override
     protected void doExecution(JobExecutionContext jobExecutionContext) {
@@ -45,7 +43,7 @@ public class AlarmJob extends AbstractQuartzJob implements ApplicationContextAwa
                 LOGGER.info("get a message, {}", JSON.toJSONString(mailDtoOptional.get()));
                 // 发送邮件
                 if (this.mailProperties.isSwitchFlag()) {
-                    this.context.getBean(MailService.class).sendMail(mailDtoOptional.get());
+                    mailService.sendEmail(mailDtoOptional.get());
                 }
 
                 // 发送微信
@@ -57,16 +55,9 @@ public class AlarmJob extends AbstractQuartzJob implements ApplicationContextAwa
                 if (this.dingdingProperties.isSwitchFlag()) {
                     this.dingDingService.send(mailDtoOptional.get().getContent());
                 }
-            } else {
-                LOGGER.info("no message in email queue");
             }
         } catch (Exception e) {
             LOGGER.info("drop a error message", e);
         }
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.context = applicationContext;
     }
 }

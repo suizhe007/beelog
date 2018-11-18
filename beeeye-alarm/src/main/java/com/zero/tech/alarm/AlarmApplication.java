@@ -6,12 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.logging.LoggingApplicationListener;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
-
-import java.util.Iterator;
-import java.util.Set;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -24,14 +19,6 @@ public class AlarmApplication {
 
     public static void main(String[] args) {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(AlarmApplication.class);
-        Set<ApplicationListener<?>> listeners = builder.application().getListeners();
-        for (Iterator<ApplicationListener<?>> it = listeners.iterator(); it.hasNext(); ) {
-            ApplicationListener<?> listener = it.next();
-            if (listener instanceof LoggingApplicationListener) {
-                it.remove();
-            }
-        }
-        builder.application().setListeners(listeners);
         builder.run(args);
         if (Utils.isNullOrEmpty(System.getProperty(STRING_PROFILES_ACTIVE))) {
             LOGGER.info("current environment is develop environment");

@@ -14,20 +14,15 @@ import static com.zero.tech.base.constant.RedisKeys.ALARM_EMAIL_QUEUE;
 @Component
 public class RedisService {
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
 
     public void sendMessage(String info, String mail) {
-        this.redisTemplate.opsForSet().add(ALARM_EMAIL_QUEUE, this.buildMailDto(info, mail));
-    }
-
-
-    public void pushToMailQueue(MailDto mailDto) {
-        redisTemplate.opsForSet().add(ALARM_EMAIL_QUEUE, mailDto);
+        this.redisTemplate.opsForList().rightPush(ALARM_EMAIL_QUEUE, this.buildMailDto(info, mail));
     }
 
     public Optional<MailDto> popFromMailQueue() {
-        MailDto mailDto = (MailDto) redisTemplate.opsForSet().pop(ALARM_EMAIL_QUEUE);
+        MailDto mailDto = (MailDto) redisTemplate.opsForList().leftPop(ALARM_EMAIL_QUEUE);
         if (mailDto == null) {
             return Optional.empty();
         } else {

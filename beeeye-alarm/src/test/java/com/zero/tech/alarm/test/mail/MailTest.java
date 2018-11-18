@@ -1,30 +1,19 @@
 package com.zero.tech.alarm.test.mail;
 
-import com.zero.tech.alarm.service.MailService;
-import com.zero.tech.base.dto.MailDto;
+import com.zero.tech.data.redis.service.RedisService;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Arrays;
+public class MailTest extends BaseTest {
+    @Autowired
+    private RedisService redisService;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc 发送邮件test
- * @date 2016-09-23 16:52:02
- */
-public class MailTest {
-
-    public static void main(String[] args) throws InterruptedException {
-
-        MailDto mailDto = new MailDto();
-        mailDto.setTo(Arrays.asList("xxx@xxx.com"));
-        mailDto.setContent("报警测试");
-        mailDto.setSubject("[SkyEye]-alarm app alert");
-
-        for (int i = 0; i < 100; ++i) {
-            new MailService().sendMail(mailDto);
-//            Thread.sleep(2000);
+    @Test
+    public void testSendMail() throws Exception {
+        for (int i = 0; i < 2; ++i) {
+            if (redisService != null) {
+                redisService.sendMessage("报警测试" + i, "qr7972@163.com");
+            }
         }
     }
 }
