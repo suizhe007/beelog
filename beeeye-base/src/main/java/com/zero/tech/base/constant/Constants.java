@@ -113,8 +113,8 @@ public class Constants {
     public static final String THIRD = "third";
 
     // zk节点
-    public static final String ROOT_PATH_EPHEMERAL = "/skyeye/monitor/scroll";
-    public static final String ROOT_PATH_PERSISTENT = "/skyeye/monitor/query";
+    public static final String ROOT_PATH_EPHEMERAL = "/beeeye/monitor/scroll";
+    public static final String ROOT_PATH_PERSISTENT = "/beeeye/monitor/query";
     public static final String APPENDER_INIT_DATA = "appender_init_data";
 
     public static final String EMPTY_STR = "";
@@ -173,14 +173,6 @@ public class Constants {
     public static final String PLEASE_CHOOSE = "请选择";
     public static final String ALL = "all";
 
-    // 返回结果
-    public static final String RES_CODE = "resCode";
-    public static final String RES_MSG = "resMsg";
-    public static final String STAT_CODE = "statCode";
-    public static final String STAT_MSG = "statMsg";
-    public static final String DATA = "data";
-    public static final String ENCRUPTY_MD5 = "md5";
-
     // es字段
     public static final String DAY = "day";
     public static final String TIME = "time";
@@ -203,11 +195,6 @@ public class Constants {
     public static final String COST = "cost";
     public static final String STATUS = "status";
 
-    // spark任务相关
-    public static final String KAFKA_GROUP_ID_CONFIG = "group.id";
-    public static final String KAFKA_BOOTSTRAP_SERVERS_CONFIG = "bootstrap.servers";
-    public static final String KAFKA_AUTO_OFFSET_RESET_CONFIG = "auto.offset.reset";
-
     //kafka相关
     public static final int KAFKA_MESSAGE_MAX_SIZE = 10000;
 
@@ -216,34 +203,12 @@ public class Constants {
     public static final String LOG_LEVEL_ERROR = "ERROR";
     public static final String LOG_LEVEL_WARNING = "WARNING";
 
-    // rpc 服务注册中心相关
-    public static final String ZK_REGISTRY_SERVICE_ROOT_PATH = "/skyeye/registry/service";
-    public static final String ZK_REGISTRY_ID_ROOT_PATH = "/skyeye/registry/id";
-    public static final String ZK_REGISTRY_SEQ = "/skyeye/seq";
-
     public static final String RPC_TYPE_NONE = "none";
     public static final String RPC_TYPE_DUBBO = "dubbo";
-    public static final String RPC_TYPE_THRIFT = "thrift";
     public static final String RPC_TYPE_SC = "sc";
-
-    // rpc trace 统计指标相关
-    public static final String TRACE_SUCCESS = "success";
-    public static final String TRACE_FAIL = "fail";
-    public static final String TRACE_MAX = "max";
-    public static final String TRACE_MIN = "min";
-    public static final String TRACE_AVERAGE = "average";
-    public static final String TRACE_TOTAL = "total";
-    public static final String TRACE_TYPE = "type";
-    public static final String TRACE_TABLE_NAME = "rpctrace";
 
     // 心跳检测相关
     public static final String HEARTBEAT_KEY = "heart beat key";
     public static final String HEARTBEAT_VALUE = "heart beat value";
-
-    // docker容器相关
-    public static final String SKYEYE_HOST_TO_REGISTRY = "SKYEYE_HOST_TO_REGISTRY";
-    public static final String COMPUTERNAME = "COMPUTERNAME";
-    public static final String SKYEYE_HOST_FILE = System.getProperty("user.home") + "/.skyeye/host";
-    public static final String UNKNOWN_HOST = "UnknownHost";
 
 }

@@ -8,7 +8,6 @@ import com.zero.tech.base.dto.EventLog;
 import com.zero.tech.base.dto.LogDto;
 import com.zero.tech.collector.metrics.cache.CacheService;
 import com.zero.tech.data.db.domain.NameInfo;
-import com.zero.tech.data.db.pk.NameInfoPK;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,23 +92,23 @@ public class NameCollector extends Job {
 
     /**
      * 构造NameInfo
+     *
      * @param name
      * @param type
      * @param app
      * @return
      */
     private NameInfo buildNameInfo(String name, String type, String app) {
-        NameInfoPK nameInfoPK = new NameInfoPK();
-        nameInfoPK.setName(name);
-        nameInfoPK.setType(type);
         NameInfo nameInfo = new NameInfo();
+        nameInfo.setName(name);
+        nameInfo.setType(type);
         nameInfo.setApp(app);
-        nameInfo.setNameInfoPK(nameInfoPK);
         return nameInfo;
     }
 
     /**
      * 构造NameInfo
+     *
      * @param name
      * @param type
      * @param app
@@ -117,12 +116,10 @@ public class NameCollector extends Job {
      * @return
      */
     private NameInfo buildNameInfo(String name, String type, String app, Integer tid) {
-        NameInfoPK nameInfoPK = new NameInfoPK();
-        nameInfoPK.setName(name);
-        nameInfoPK.setType(type);
         NameInfo nameInfo = new NameInfo();
         nameInfo.setApp(app);
-        nameInfo.setNameInfoPK(nameInfoPK);
+        nameInfo.setName(name);
+        nameInfo.setType(type);
         nameInfo.setTid(tid);
         return nameInfo;
     }

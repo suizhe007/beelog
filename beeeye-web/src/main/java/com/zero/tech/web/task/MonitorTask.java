@@ -25,14 +25,6 @@ import org.springframework.util.StopWatch;
 
 import java.util.*;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-12-01 17:07:37
- */
 @Configuration
 @EnableScheduling
 @ConfigurationProperties(prefix = "monitor.es")
@@ -100,7 +92,7 @@ public class MonitorTask {
                         // 超过阈值，需要报警
                         LOGGER.info("{} 需要报警", uniqueName);
                         // 如果是api的需要在app上加一个
-                        List<NameInfoDto> apis = nameInfoMapper.findByTypeName(Constants.API, uniqueName);
+                        List<NameInfoDto> apis = nameInfoMapper.findByPK(Constants.API, uniqueName);
                         String app = uniqueName;
                         if (apis.size() != 0) {
                             app = apis.get(0).getApp() + Constants.JING_HAO + uniqueName;
@@ -177,7 +169,7 @@ public class MonitorTask {
     private Set<String> transform(List<NameInfo> nameInfos) {
         Set<String> names = new HashSet<>();
         for (NameInfo nameInfo : nameInfos) {
-            names.add(nameInfo.getNameInfoPK().getName());
+            names.add(nameInfo.getName());
         }
         return names;
     }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zero.tech.data.db.mapper.NameInfoMapper">
+    <resultMap id="nameInfoDto" type="NameInfoDto">
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="app" column="app" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="nameInfo" type="NameInfo">
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="app" column="app" jdbcType="VARCHAR"/>
+        <result property="tid" column="tid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findByType" resultMap="nameInfoDto">
+        select name,type,app
+        from app_info
+        where type=#{0}
+    </select>
+
+    <select id="findByPK" resultMap="nameInfoDto">
+        select name,type,app
+        from app_info
+        where type=#{0} and name=#{1}
+    </select>
+
+    <select id="findByTid" resultMap="nameInfo">
+        select name,type,app,tid
+        from app_info
+        where tid=#{0}
+    </select>
+
+    <insert id="save" parameterType="NameInfo">
+        insert into app_info(name,type,app,app)
+        values(#{name},#{type},#{app},#{app})
+    </insert>
+
+    <select id="findAll" resultMap="nameInfo">
+        select name,type,app,tid
+        from app_info
+    </select>
+</mapper>

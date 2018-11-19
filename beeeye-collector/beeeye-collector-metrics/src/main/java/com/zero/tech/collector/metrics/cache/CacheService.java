@@ -87,11 +87,11 @@ public class CacheService implements InitializingBean {
         sw.start();
         LOGGER.info("start load config to cache");
 
-        Iterable<NameInfo> nameInfos = nameInfoMapper.findAll();
+        Iterator<NameInfo> it = nameInfoMapper.findAll().iterator();
 
-        for (Iterator<NameInfo> it = nameInfos.iterator(); it.hasNext(); ) {
+        for (; it.hasNext(); ) {
             NameInfo nameInfo = it.next();
-            this.setOps.add(mapping.get(nameInfo.getNameInfoPK().getType()), nameInfo.getNameInfoPK().getName());
+            this.setOps.add(mapping.get(nameInfo.getType()), nameInfo.getName());
         }
 
         sw.stop();

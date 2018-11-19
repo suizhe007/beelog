@@ -48,7 +48,7 @@ public class AppInfoService {
      * @param logCollectionStatus
      */
     public void update(String host, String app, int type, LogCollectionStatus logCollectionStatus) {
-        AppInfo appInfo = appInfoMapper.findAppInfoByPK(host, app, type);
+        AppInfo appInfo = appInfoMapper.findAppInfoByPK(host, app, type).get(0);
         appInfo.setStatus(logCollectionStatus.symbol());
         appInfoMapper.save(appInfo);
     }
@@ -61,7 +61,7 @@ public class AppInfoService {
      * @param type
      */
     public void delete(String host, String app, int type) {
-        AppInfo appInfo = appInfoMapper.findAppInfoByPK(host, app, type);
+        AppInfo appInfo = appInfoMapper.findAppInfoByPK(host, app, type).get(0);
         if (null != appInfo) {
             appInfoMapper.delete(appInfo);
         }

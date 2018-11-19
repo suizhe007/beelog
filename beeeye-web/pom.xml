@@ -41,7 +41,7 @@
         </dependency>
         <dependency>
             <groupId>beeeye</groupId>
-            <artifactId>beeeye-data-jpa</artifactId>
+            <artifactId>beeeye-data-db</artifactId>
             <exclusions>
                 <exclusion>
                     <artifactId>slf4j-log4j12</artifactId>

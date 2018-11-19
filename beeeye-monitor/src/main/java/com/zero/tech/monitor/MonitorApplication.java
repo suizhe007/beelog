@@ -1,5 +1,6 @@
 package com.zero.tech.monitor;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.zero.tech.monitor", "com.zero.tech.data.db", "com.zero.tech.data.redis"})
+@MapperScan(basePackages = {"com.zero.tech.data.db.*"})
 public class MonitorApplication {
 
     private static volatile boolean RUNNING = true;

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zero.tech.data.db.mapper.AppInfoMapper">
+
+    <resultMap id="appStatusDto" type="AppStatusDto">
+        <result property="app" column="app" jdbcType="VARCHAR"/>
+        <result property="host" column="host" jdbcType="VARCHAR"/>
+        <result property="deploy" column="deploy" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="appInfo" type="AppInfo">
+        <result property="app" column="app" jdbcType="VARCHAR"/>
+        <result property="host" column="host" jdbcType="VARCHAR"/>
+        <result property="deploy" column="deploy" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findByType" resultMap="appStatusDto">
+        select app,host,deploy,status
+        from app_info
+        where type=#{0}
+    </select>
+
+    <select id="findAppStatusByPK" resultMap="appStatusDto">
+        select app,host,deploy,status
+        from app_info
+        where host=#{0} and app=#{1} and type=#{2}
+    </select>
+
+    <select id="findAppInfoByPK" resultMap="appInfo">
+        select app,host,deploy,status,type
+        from app_info
+        where host=#{0} and app=#{1} and type=#{2}
+    </select>
+
+
+    <select id="findByHostType" resultMap="appStatusDto">
+        select app,host,deploy,status
+        from app_info
+        where host=#{0} and type=#{1}
+    </select>
+
+    <select id="findByAppType" resultMap="appStatusDto">
+        select app,host,deploy,status
+        from app_info
+        where app=#{0} and type=#{1}
+    </select>
+
+    <insert id="save" parameterType="AppInfo">
+        insert into app_info(app,host,deploy,status,type)
+        values(#{app},#{host},#{deploy},#{status},#{type})
+    </insert>
+
+    <delete id="deleteAll">
+        delete from app_info
+    </delete>
+
+    <delete id="delete" parameterType="AppInfo">
+        delete from app_info
+        <trim prefix="where" suffixOverrides="and">
+            <if test="app != null">
+                app = #{app,jdbcType=VARCHAR} and
+            </if>
+            <if test="host != null">
+                host = #{host,jdbcType=VARCHAR} and
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER} and
+            </if>
+            <if test="deploy != null">
+                deploy = #{deploy,jdbcType=VARCHAR} and
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR} and
+            </if>
+        </trim>
+    </delete>
+</mapper>

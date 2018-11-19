@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zero.tech.data.db.mapper.MonitorTempleteMapper">
+    <resultMap id="monitorTemplate" type="com.zero.tech.data.db.domain.MonitorTemplate">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="window" column="window" jdbcType="INTEGER"/>
+        <result property="threshold" column="threshold" jdbcType="DOUBLE"/>
+        <result property="preset" column="preset" jdbcType="INTEGER"/>
+        <result property="cost" column="cost" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="monitorTemplate">
+        select id,name,window,threshold,preset,cost
+        from app_info
+    </select>
+</mapper>

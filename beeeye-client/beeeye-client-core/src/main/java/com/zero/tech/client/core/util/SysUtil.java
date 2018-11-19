@@ -1,7 +1,6 @@
 package com.zero.tech.client.core.util;
 
 import com.zero.tech.base.constant.Constants;
-import com.zero.tech.base.util.DockerHostUtil;
 import com.zero.tech.base.util.StringUtil;
 
 /**

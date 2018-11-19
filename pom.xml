@@ -92,7 +92,7 @@
             </dependency>
             <dependency>
                 <groupId>beeeye</groupId>
-                <artifactId>beeeye-data-jpa</artifactId>
+                <artifactId>beeeye-data-db</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @desc 缓存service，缓存当前服务器中所有的上线的应用和历史上线应用，包含本进程缓存和第三方redis缓存（提供给web进行展示使用）
@@ -38,6 +39,9 @@ public class CacheService implements InitializingBean {
         LOGGER.info("开始加载缓存");
         // 将mysql数据进行清空
         this.appInfoService.deleteAll();
+        if (Objects.isNull(curatorFramework.checkExists().forPath(Constants.ROOT_PATH_EPHEMERAL))) {
+            curatorFramework.create().creatingParentsIfNeeded().forPath(Constants.ROOT_PATH_EPHEMERAL);
+        }
         List<String> apps = curatorFramework.getChildren().forPath(Constants.ROOT_PATH_EPHEMERAL);
 
         // 启动时获取所有的节点数据, 写入本地缓存和mysql
@@ -49,6 +53,9 @@ public class CacheService implements InitializingBean {
             }
         }
 
+        if (Objects.isNull(curatorFramework.checkExists().forPath(Constants.ROOT_PATH_PERSISTENT))) {
+            curatorFramework.create().creatingParentsIfNeeded().forPath(Constants.ROOT_PATH_PERSISTENT);
+        }
         apps = curatorFramework.getChildren().forPath(Constants.ROOT_PATH_PERSISTENT);
         for (String app : apps) {
             List<String> hosts = curatorFramework.getChildren().forPath(Constants.ROOT_PATH_PERSISTENT + Constants.SLASH + app);
