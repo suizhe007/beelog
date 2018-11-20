@@ -1,4 +1,4 @@
-package com.zero.tech.web.configuration.mvc;
+package com.zero.tech.web.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -10,12 +10,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import java.util.Arrays;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc mvc 配置
- * @date 2016-10-08 10:52:10
  */
 @Configuration
 public class MvcConfig {

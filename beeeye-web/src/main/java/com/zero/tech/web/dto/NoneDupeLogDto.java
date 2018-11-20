@@ -1,12 +1,6 @@
 package com.zero.tech.web.dto;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-10-11 17:14:13
  */
 public class NoneDupeLogDto {
 

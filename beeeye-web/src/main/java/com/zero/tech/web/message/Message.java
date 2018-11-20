@@ -3,12 +3,7 @@ package com.zero.tech.web.message;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 返回消息的默认实现
- * @date 2016-10-09 09:15:34
  */
 public abstract class Message<T> {
 

@@ -1,12 +1,7 @@
 package com.zero.tech.web.message;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 消息码
- * @date 2016-10-09 09:15:34
  */
 public enum MessageCode {
 

@@ -26,12 +26,6 @@ import java.util.Map;
 
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-10-08 20:01:15
  */
 @Service
 @ConfigurationProperties(prefix = "data.es")
@@ -47,6 +41,7 @@ public class LogQueryService {
 
     /**
      * 向es请求
+     *
      * @param sql
      * @return
      */
@@ -57,6 +52,7 @@ public class LogQueryService {
 
     /**
      * 根据app host interval查询日志
+     *
      * @param host
      * @param app
      * @param interval
@@ -71,11 +67,11 @@ public class LogQueryService {
                 .append(Constants.SINGLE_PHE).append(host).append(Constants.SINGLE_PHE).append(Constants.SPACE)
                 .append(Constants.AND).append(Constants.SPACE).append(Constants.APP).append(Constants.EQUAL)
                 .append(Constants.SINGLE_PHE).append(app).append(Constants.SINGLE_PHE).append(Constants.SPACE);
-                if (!StringUtils.isEmpty(keyword)) {
-                    sb.append(Constants.AND).append(Constants.SPACE).append(Constants.MESSAGE_MAX).append(Constants.EQUAL)
-                      .append(Constants.SINGLE_PHE).append(keyword).append(Constants.SINGLE_PHE).append(Constants.SPACE);
-                }
-                sb.append(Constants.AND).append(Constants.SPACE).append(Constants.DAY).append(Constants.EQUAL)
+        if (!StringUtils.isEmpty(keyword)) {
+            sb.append(Constants.AND).append(Constants.SPACE).append(Constants.MESSAGE_MAX).append(Constants.EQUAL)
+                    .append(Constants.SINGLE_PHE).append(keyword).append(Constants.SINGLE_PHE).append(Constants.SPACE);
+        }
+        sb.append(Constants.AND).append(Constants.SPACE).append(Constants.DAY).append(Constants.EQUAL)
                 .append(Constants.SINGLE_PHE).append(intervralDate[0]).append(Constants.SINGLE_PHE).append(Constants.SPACE)
                 .append(Constants.AND).append(Constants.SPACE).append(Constants.TIME).append(Constants.GEQUAL)
                 .append(Constants.SINGLE_PHE).append(intervralDate[1]).append(Constants.SINGLE_PHE).append(Constants.SPACE)
@@ -88,6 +84,7 @@ public class LogQueryService {
 
     /**
      * 根据sql进行查询
+     *
      * @param sql
      * @return
      */
@@ -97,6 +94,7 @@ public class LogQueryService {
 
     /**
      * 根据filterDto查询日志
+     *
      * @param filterDto
      * @return
      */
@@ -106,6 +104,7 @@ public class LogQueryService {
 
     /**
      * 解析log
+     *
      * @param response
      * @return
      */
@@ -132,6 +131,7 @@ public class LogQueryService {
 
     /**
      * 获取所有的日志级别
+     *
      * @return
      */
     public List<String> getLogLevel() {
@@ -144,6 +144,7 @@ public class LogQueryService {
 
     /**
      * 获取所有的日志事件
+     *
      * @return
      */
     public List<String> getEventType() {
@@ -156,6 +157,7 @@ public class LogQueryService {
 
     /**
      * 获取所有的操作符
+     *
      * @return
      */
     public List<String> getOpt() {

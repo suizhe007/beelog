@@ -1,4 +1,4 @@
-package com.zero.tech.web.web.controller;
+package com.zero.tech.web.controller;
 
 import com.zero.tech.base.constant.Constants;
 import com.zero.tech.data.db.mapper.NameInfoMapper;
@@ -16,12 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 统计相关的controller
- * @date 2016-11-29 20:22:08
  */
 @RestController
 @RequestMapping("statistics")

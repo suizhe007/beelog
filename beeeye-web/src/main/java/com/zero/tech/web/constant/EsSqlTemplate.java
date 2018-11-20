@@ -1,12 +1,7 @@
 package com.zero.tech.web.constant;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc es sql template替换的key
- * @date 2016-12-02 15:18:10
  */
 public class EsSqlTemplate {
 

@@ -2,13 +2,8 @@ package com.zero.tech.web.dto;
 
 import com.zero.tech.base.constant.Constants;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
+/*
  * @desc 历史查询前端传递的dto
- * @date 2016-10-13 09:39:15
  */
 public class FilterDto {
 

@@ -12,6 +12,6 @@
 
     <select id="findAll" resultMap="monitorTemplate">
         select id,name,window,threshold,preset,cost
-        from app_info
+        from monitor_template
     </select>
 </mapper>

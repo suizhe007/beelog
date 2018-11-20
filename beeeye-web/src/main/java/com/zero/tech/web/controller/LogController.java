@@ -1,4 +1,4 @@
-package com.zero.tech.web.web.controller;
+package com.zero.tech.web.controller;
 
 import com.zero.tech.web.dto.FilterDto;
 import com.zero.tech.web.message.BaseMessage;
@@ -19,12 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 日志控制器
- * @date 2016-10-08 11:11:57
  */
 @RestController
 @RequestMapping("log")
@@ -36,9 +31,9 @@ public class LogController {
 
     @RequestMapping(path = "realtime", method = RequestMethod.GET)
     public BaseMessage realtime(@RequestParam(value = "app", required = false) final String app,
-            @RequestParam(value = "host", required = false) final String host,
-            @RequestParam(value = "keyword", required = false) final String keyword,
-            @RequestParam(value = "interval", required = false) final int interval) {
+                                @RequestParam(value = "host", required = false) final String host,
+                                @RequestParam(value = "keyword", required = false) final String keyword,
+                                @RequestParam(value = "interval", required = false) final int interval) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);

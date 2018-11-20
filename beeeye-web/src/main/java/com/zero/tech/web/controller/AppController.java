@@ -1,4 +1,4 @@
-package com.zero.tech.web.web.controller;
+package com.zero.tech.web.controller;
 
 import com.zero.tech.base.constant.Constants;
 import com.zero.tech.web.message.BaseMessage;
@@ -15,12 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-10-09 09:19:47
  */
 @RestController
 @RequestMapping("app")
@@ -33,7 +27,7 @@ public class AppController {
 
     @RequestMapping(path = "statusHost", method = RequestMethod.GET)
     public BaseMessage statusHostInfo(@RequestParam(value = "app", required = false) final String app,
-            @RequestParam(value = "host", required = false) final String host) {
+                                      @RequestParam(value = "host", required = false) final String host) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
@@ -48,7 +42,7 @@ public class AppController {
 
     @RequestMapping(path = "deployHost", method = RequestMethod.GET)
     public BaseMessage deployHostInfo(@RequestParam(value = "app", required = false) final String app,
-            @RequestParam(value = "host", required = false) final String host) {
+                                      @RequestParam(value = "host", required = false) final String host) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
@@ -63,7 +57,7 @@ public class AppController {
 
     @RequestMapping(path = "hostApp", method = RequestMethod.GET)
     public BaseMessage getHostApp(@RequestParam(value = "type", required = false) final int type,
-            @RequestParam(value = "isDeploy", required = false) final boolean isDeploy) {
+                                  @RequestParam(value = "isDeploy", required = false) final boolean isDeploy) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
@@ -78,7 +72,7 @@ public class AppController {
 
     @RequestMapping(path = "statusApp", method = RequestMethod.GET)
     public BaseMessage statusAppInfo(@RequestParam(value = "app", required = false) final String app,
-            @RequestParam(value = "host", required = false) final String host) {
+                                     @RequestParam(value = "host", required = false) final String host) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
@@ -93,7 +87,7 @@ public class AppController {
 
     @RequestMapping(path = "deployApp", method = RequestMethod.GET)
     public BaseMessage deployAppInfo(@RequestParam(value = "app", required = false) final String app,
-            @RequestParam(value = "host", required = false) final String host) {
+                                     @RequestParam(value = "host", required = false) final String host) {
         BaseMessage msg = new BaseMessage();
         try {
             ResponseUtil.buildResMsg(msg, MessageCode.SUCCESS, StatusCode.SUCCESS);
@@ -122,6 +116,7 @@ public class AppController {
 
     /**
      * 转换
+     *
      * @param str
      * @return
      */

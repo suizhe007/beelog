@@ -1,12 +1,7 @@
 package com.zero.tech.web.dto;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 实时统计的数据返回的
- * @date 2016-11-30 15:15:06
  */
 public class StatisticsDto {
 

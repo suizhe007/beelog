@@ -15,12 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 接口返回结果工具类
- * @date 2016-10-09 09:19:47
  */
 public class ResponseUtil {
 
@@ -82,47 +77,47 @@ public class ResponseUtil {
             sb = new StringBuffer();
             log = ((JSONObject) iterator.next()).getJSONObject("_source");
 
-            if(!isEmpty(log.getString("day")) && !isEmpty(log.getString("time"))){
+            if (!isEmpty(log.getString("day")) && !isEmpty(log.getString("time"))) {
                 sb = sb.append(log.getString("day")).append(" ").append(log.getString("time"))
                         .append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("day"))){
+            } else if (!isEmpty(log.getString("day"))) {
                 sb = sb.append(log.getString("day")).append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("time"))){
+            } else if (!isEmpty(log.getString("time"))) {
                 sb = sb.append(log.getString("time")).append(Constants.SEMICOLON);
             }
 
-            if(!isEmpty(log.getString("app"))){
+            if (!isEmpty(log.getString("app"))) {
                 sb.append(log.getString("app")).append(Constants.SEMICOLON);
             }
-            if(!isEmpty(log.getString("host"))){
+            if (!isEmpty(log.getString("host"))) {
                 sb.append(log.getString("host")).append(Constants.SEMICOLON);
             }
-            if(!isEmpty(log.getString("thread"))){
+            if (!isEmpty(log.getString("thread"))) {
                 sb.append(log.getString("thread")).append(Constants.SEMICOLON);
             }
-            if(!isEmpty(log.getString("level"))){
+            if (!isEmpty(log.getString("level"))) {
                 sb.append(log.getString("level")).append(Constants.SEMICOLON);
             }
 
-            if(!isEmpty(log.getString("pack")) && !isEmpty(log.getString("clazz")) && !isEmpty(log.getString("line"))){
+            if (!isEmpty(log.getString("pack")) && !isEmpty(log.getString("clazz")) && !isEmpty(log.getString("line"))) {
                 sb.append(log.getString("pack")).append(Constants.POINT)
-                  .append(log.getString("clazz")).append(":")
-                  .append(log.getString("line")).append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("pack")) && !isEmpty(log.getString("clazz"))){
+                        .append(log.getString("clazz")).append(":")
+                        .append(log.getString("line")).append(Constants.SEMICOLON);
+            } else if (!isEmpty(log.getString("pack")) && !isEmpty(log.getString("clazz"))) {
                 sb.append(log.getString("pack")).append(Constants.POINT).append(log.getString("clazz"))
-                  .append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("clazz")) && !isEmpty(log.getString("line"))){
+                        .append(Constants.SEMICOLON);
+            } else if (!isEmpty(log.getString("clazz")) && !isEmpty(log.getString("line"))) {
                 sb.append(log.getString("clazz")).append(":")
-                  .append(log.getString("line")).append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("pack"))){
+                        .append(log.getString("line")).append(Constants.SEMICOLON);
+            } else if (!isEmpty(log.getString("pack"))) {
                 sb.append(log.getString("pack")).append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("clazz"))){
+            } else if (!isEmpty(log.getString("clazz"))) {
                 sb.append(log.getString("clazz")).append(Constants.SEMICOLON);
-            }else if(!isEmpty(log.getString("line"))){
+            } else if (!isEmpty(log.getString("line"))) {
                 sb.append(log.getString("line")).append(Constants.SEMICOLON);
             }
 
-            if(!isEmpty(log.getString("message_max"))){
+            if (!isEmpty(log.getString("message_max"))) {
                 sb.append(log.getString("message_max")).append(Constants.SEMICOLON);
             }
 
@@ -191,7 +186,6 @@ public class ResponseUtil {
 //    }
 
     /**
-     *
      * @param map
      * @param key
      * @param defaultValue
@@ -201,8 +195,6 @@ public class ResponseUtil {
 //        String value = map.get(key);
 //        return StringUtil.isBlank(value) ? defaultValue : value;
 //    }
-
-
     public static boolean isEmpty(Object str) {
         return (str == null || "".equals(str));
     }

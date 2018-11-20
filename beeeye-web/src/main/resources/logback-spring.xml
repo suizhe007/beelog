@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="10 seconds">
-    <property name="APP_NAME" value="monitor"/>
+    <property name="APP_NAME" value="web"/>
     <property name="log.path" value="logs"/>
     <contextName>${APP_NAME}</contextName>
-    
+
     <logger name="com.zero.tech.data.db.mapper" level="debug"/>
 
     <springProfile name="dev">

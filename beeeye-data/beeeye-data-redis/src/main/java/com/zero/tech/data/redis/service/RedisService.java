@@ -16,7 +16,6 @@ public class RedisService {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-
     public void sendMessage(String info, String mail) {
         this.redisTemplate.opsForList().rightPush(ALARM_EMAIL_QUEUE, this.buildMailDto(info, mail));
     }

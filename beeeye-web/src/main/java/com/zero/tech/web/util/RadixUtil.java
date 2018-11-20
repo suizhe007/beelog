@@ -2,9 +2,6 @@ package com.zero.tech.web.util;
 
 /**
  * 进制相关工具类
- * @author Aiur
- * @version 0.0.1
- * @date 2017-3-30 15:15:06
  */
 public class RadixUtil {
 

@@ -17,14 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-11-29 20:22:54
- */
 @Service
 @ConfigurationProperties(prefix = "statistic.es")
 public class StatisticsService {

@@ -16,29 +16,29 @@
 
     <select id="findByType" resultMap="nameInfoDto">
         select name,type,app
-        from app_info
+        from name_info
         where type=#{0}
     </select>
 
     <select id="findByPK" resultMap="nameInfoDto">
         select name,type,app
-        from app_info
+        from name_info
         where type=#{0} and name=#{1}
     </select>
 
     <select id="findByTid" resultMap="nameInfo">
         select name,type,app,tid
-        from app_info
+        from name_info
         where tid=#{0}
     </select>
 
     <insert id="save" parameterType="NameInfo">
-        insert into app_info(name,type,app,app)
+        insert into name_info(name,type,app,app)
         values(#{name},#{type},#{app},#{app})
     </insert>
 
     <select id="findAll" resultMap="nameInfo">
         select name,type,app,tid
-        from app_info
+        from name_info
     </select>
 </mapper>
