@@ -38,7 +38,7 @@ elif [[ $# == 2 ]]; then
     shift
     if [[ "$environment" = "test" ]];then
         PROFILE="-Dspring.profiles.active=test"
-        DEBUG="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=11181"
+        DEBUG="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=11182"
         JAVA_OPTS="$JAVA_OPTS $DEBUG $PROFILE"
         MaxMemory=256
     else

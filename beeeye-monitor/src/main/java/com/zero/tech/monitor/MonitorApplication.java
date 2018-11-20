@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 
+import static com.zero.tech.base.util.Utils.checkEnv;
+
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.zero.tech.monitor", "com.zero.tech.data.db", "com.zero.tech.data.redis"})
@@ -20,6 +22,7 @@ public class MonitorApplication {
     public static void main(String[] args) {
         SpringApplicationBuilder builder = new SpringApplicationBuilder(MonitorApplication.class);
         builder.run(args);
+        checkEnv(LOGGER);
         LOGGER.info("monitor start successfully");
 
         // 优雅停止项目

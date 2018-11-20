@@ -210,5 +210,7 @@ public class Constants {
     // 心跳检测相关
     public static final String HEARTBEAT_KEY = "heart beat key";
     public static final String HEARTBEAT_VALUE = "heart beat value";
-
+    //spring profile
+    public static final String STRING_PROFILES_ACTIVE = "spring.profiles.active";
+    public static final String STRING_PROFILES_ACTIVE_TEST = "test";
 }
