@@ -1,4 +1,4 @@
-package com.zero.tech.monitor.configuration.zookeeper;
+package com.zero.tech.monitor.config;
 
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.curator.RetryPolicy;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "coordinate.zookeeper")
-public class ZookeeperConfiguration {
+public class ZookeeperConfig {
 
     private String zkServers;
 

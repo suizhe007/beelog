@@ -16,7 +16,6 @@ import java.util.Objects;
 
 /**
  * @desc 缓存service，缓存当前服务器中所有的上线的应用和历史上线应用，包含本进程缓存和第三方redis缓存（提供给web进行展示使用）
- * @date 2016-09-23 08:55:50
  */
 @Service
 public class CacheService implements InitializingBean {
