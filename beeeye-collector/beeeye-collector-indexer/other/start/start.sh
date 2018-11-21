@@ -4,7 +4,7 @@ cur=`cd "$cur"; pwd`
 cur=`dirname "$cur"`
 #config
 app="indexer"
-appMainClass=com.zero.tech.indexer.IndexerApplication
+appMainClass=com.zero.tech.collector.indexer.IndexerApplication
 
 export INDEXER_HOME="$cur"
 APP_HOME="$INDEXER_HOME"

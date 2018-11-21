@@ -4,7 +4,7 @@ cur=`cd "$cur"; pwd`
 cur=`dirname "$cur"`
 #config
 app="indexer"
-appMainClass=com.zero.tech.metrics.MetricsApplication
+appMainClass=com.zero.tech.collector.metrics.MetricsApplication
 
 export METRICS_HOME="$cur"
 APP_HOME="$METRICS_HOME"
