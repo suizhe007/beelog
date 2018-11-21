@@ -20,18 +20,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc kafka2es 建立index的task
- * @date 2016-09-20 10:25:13
  */
 @Component
 public class IndexerTask implements Task {
@@ -47,7 +42,7 @@ public class IndexerTask implements Task {
     @Autowired
     private EsProperties esProperties;
 
-    public static Map<TopicPartition, OffsetAndMetadata> currentOffsets = new HashMap<TopicPartition, OffsetAndMetadata>();
+    public static Map<TopicPartition, OffsetAndMetadata> currentOffsets = new ConcurrentHashMap<>();
     private Thread thread;
 
     @Override
@@ -114,6 +109,7 @@ public class IndexerTask implements Task {
 
     /**
      * 根据log字符串构造XContentBuilder
+     *
      * @param line
      * @return
      */

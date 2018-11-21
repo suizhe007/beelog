@@ -18,10 +18,9 @@
         <slf4j.version>1.7.25</slf4j.version>
         <springboot.version>2.0.4.RELEASE</springboot.version>
         <fastjson.version>1.2.40</fastjson.version>
-        <javamail.version>1.4.7</javamail.version>
         <zkclient.version>0.10</zkclient.version>
-        <zookeeper.version>3.4.6</zookeeper.version>
-        <kafkaclient.version>0.10.0.1</kafkaclient.version>
+        <zookeeper.version>3.4.10</zookeeper.version>
+        <kafkaclient.version>1.1.0</kafkaclient.version>
         <junit.version>4.12</junit.version>
         <jackson.version>1.9.13</jackson.version>
         <curator.version>2.11.0</curator.version>
@@ -123,11 +122,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>${javamail.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.101tec</groupId>
