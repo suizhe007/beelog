@@ -32,7 +32,7 @@ public class GenerateLog {
 //        LOGGER.info("reload cache end");
 
 //        for (int i = 0; i < 10; i ++) {
-            this.generateLogService.generateCoverLog();
+        this.generateLogService.generateCoverLog();
 //        }
     }
 }
