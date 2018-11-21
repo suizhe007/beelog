@@ -8,12 +8,7 @@ import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import java.util.List;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc info collect consume group的具体业务处理根类
- * @date 2016-11-21 15:51:39
  */
 public abstract class Job {
 

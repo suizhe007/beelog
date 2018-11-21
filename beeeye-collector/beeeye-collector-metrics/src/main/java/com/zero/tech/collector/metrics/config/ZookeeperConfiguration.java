@@ -1,4 +1,4 @@
-package com.zero.tech.collector.metrics.configuration.zookeeper;
+package com.zero.tech.collector.metrics.config;
 
 import org.I0Itec.zkclient.ZkClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -6,12 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc zk的配置
- * @date 2016-11-22 08:45:53
  */
 @Configuration
 @ConfigurationProperties(prefix = "coordinate.zookeeper")

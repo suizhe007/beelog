@@ -14,13 +14,10 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static com.zero.tech.collector.core.util.Utils.assignedPartitionOffsets;
+
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc rebalance回调
- * @date 2016-09-20 11:14:27
  */
 @Component
 public class HandleRebalance implements ConsumerRebalanceListener, InitializingBean {
@@ -41,7 +38,7 @@ public class HandleRebalance implements ConsumerRebalanceListener, InitializingB
 
     @Override
     public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-
+        assignedPartitionOffsets(LOGGER, kafkaConsumer, partitions);
     }
 
     @Override

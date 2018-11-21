@@ -19,12 +19,7 @@ import java.util.List;
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 监控相关信息入es的job
- * @date 2016-11-21 17:21:17
  */
 public class Indexer extends Job {
 
@@ -57,6 +52,7 @@ public class Indexer extends Job {
 
     /**
      * 根据log相关信息构造XContentBuilder
+     *
      * @param log
      * @param logDto
      * @return
@@ -91,6 +87,7 @@ public class Indexer extends Job {
 
     /**
      * 根据给定的day和time返回时间（2016-11-23 16:42:40）
+     *
      * @param day
      * @param time
      * @return

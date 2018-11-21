@@ -15,12 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 名称采集job，包含api name、account name、third name
- * @date 2016-11-21 17:23:30
  */
 public class NameCollector extends Job {
 

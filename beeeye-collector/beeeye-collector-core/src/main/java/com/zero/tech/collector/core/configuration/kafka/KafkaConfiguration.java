@@ -13,12 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc kafka配置
- * @date 2016-09-18 11:12:07
  */
 @Configuration
 @EnableConfigurationProperties({KafkaProperties.class})
@@ -38,10 +33,7 @@ public class KafkaConfiguration {
         config.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 15000);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-
         KafkaConsumer<byte[], String> kafkaConsumer = new KafkaConsumer<byte[], String>(config);
-
         return kafkaConsumer;
     }
-
 }

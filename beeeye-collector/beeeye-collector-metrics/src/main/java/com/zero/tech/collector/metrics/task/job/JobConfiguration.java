@@ -14,12 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 责任链组装3个job
- * @date 2017-08-04 09:23:57
  */
 @Configuration
 public class JobConfiguration {

@@ -23,7 +23,7 @@ import java.net.UnknownHostException;
  * @desc elasticsearch 配置
  * @date 2016-09-20 09:13:32
  */
-@ConditionalOnClass({ Settings.class, TransportClient.class })
+@ConditionalOnClass({Settings.class, TransportClient.class})
 @Configuration
 @EnableConfigurationProperties(EsProperties.class)
 public class EsConfiguration {

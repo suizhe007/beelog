@@ -8,14 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-/**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
- * @desc
- * @date 2016-09-20 10:22:54
- */
 public class KafkaOffsetCommitCallback implements OffsetCommitCallback {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaOffsetCommitCallback.class);

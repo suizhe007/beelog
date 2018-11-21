@@ -25,12 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc 采集任务，消费采集api name、account name、third name、第三方系统异常、任务调度异常、入新es的索引（for kibana）的消费组
- * @date 2016-11-21 15:33:55
  */
 @Component
 public class MetricsTask implements Task {
@@ -123,6 +118,7 @@ public class MetricsTask implements Task {
 
     /**
      * 根据line构造并返回LogDto
+     *
      * @param line
      * @return
      */

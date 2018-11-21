@@ -3,12 +3,7 @@ package com.zero.tech.collector.core.configuration.kafka;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * JThink@JThink
- *
- * @author JThink
- * @version 0.0.1
  * @desc kafka配置项
- * @date 2016-09-20 10:15:05
  */
 @ConfigurationProperties(prefix = "message.kafka")
 public class KafkaProperties {
