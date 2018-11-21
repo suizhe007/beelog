@@ -1,55 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="60">
-  <!--
-  monitorInterval：Log4j能够自动检测修改配置文件和重新配置本身，设置间隔秒数。
-  -->
-  <Properties>
-    <Property name="LOG_HOME">../logs/</Property>
-    <property name="APP_NAME" value="hi-log-log4j2"/>
-  </Properties>
+    <!--
+    monitorInterval：Log4j能够自动检测修改配置文件和重新配置本身，设置间隔秒数。
+    -->
+    <Properties>
+        <Property name="LOG_HOME">../logs/</Property>
+        <property name="APP_NAME" value="hi-log-log4j2"/>
+    </Properties>
 
-  <Appenders>
-    <!-- 控制台输出 -->
-    <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{96}[%line]: %msg%n"/>
-    </Console>
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{96}[%line]: %msg%n"/>
+        </Console>
 
-    <!-- 按照每天生成日志文件 -->
-    <RollingFile name="RollingInfoFile" fileName="${LOG_HOME}/info/${APP_NAME}.log" filePattern="${LOG_HOME}/info/${APP_NAME}_%d{yyyy-MM-dd}.%i.log">
-      <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{96}[%line]: %msg%n"/>
-      <Policies>
-        <TimeBasedTriggeringPolicy/>
-        <SizeBasedTriggeringPolicy size="128 MB"/>
-      </Policies>
-    </RollingFile>
+        <!-- 按照每天生成日志文件 -->
+        <RollingFile name="RollingInfoFile" fileName="${LOG_HOME}/info/${APP_NAME}.log"
+                     filePattern="${LOG_HOME}/info/${APP_NAME}_%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{96}[%line]: %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="128 MB"/>
+            </Policies>
+        </RollingFile>
 
-    <RollingFile name="RollingErrorFile" fileName="${LOG_HOME}/info/${APP_NAME}.log" filePattern="${LOG_HOME}/info/${APP_NAME}_%d{yyyy-MM-dd}.%i.log">
-      <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{96}[%line]: %msg%n"/>
-      <Policies>
-        <TimeBasedTriggeringPolicy/>
-        <SizeBasedTriggeringPolicy size="128 MB"/>
-      </Policies>
-    </RollingFile>
+        <RollingFile name="RollingErrorFile" fileName="${LOG_HOME}/info/${APP_NAME}.log"
+                     filePattern="${LOG_HOME}/info/${APP_NAME}_%d{yyyy-MM-dd}.%i.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{96}[%line]: %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="128 MB"/>
+            </Policies>
+        </RollingFile>
 
-    <!-- kafka appender -->
-    <KafkaCustomize name="KafkaCustomize" topic="app-log" zkServers="192.168.14.111:2181"
-                    mail="qqrryu@126.com" rpc="none" app="${APP_NAME}">
-      <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS};${APP_NAME};HOSTNAME;%t;%-5level;%logger{96};%line;%msg%n"/>
-      <Property name="bootstrap.servers">192.168.14.111:9092</Property>
-      <Property name="acks">0</Property>
-      <Property name="linger.ms">100</Property>
-    </KafkaCustomize>
-  </Appenders>
+        <!-- kafka appender -->
+        <KafkaCustomize name="KafkaCustomize" topic="app-log" zkServers="192.168.14.111:2181"
+                        mail="qqrryu@126.com" rpc="none" app="${APP_NAME}">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS};${APP_NAME};HOSTNAME;%t;%-5level;%logger{96};%line;%msg%n"/>
+            <Property name="bootstrap.servers">192.168.14.111:9092</Property>
+            <Property name="acks">0</Property>
+            <Property name="linger.ms">100</Property>
+        </KafkaCustomize>
+    </Appenders>
 
-  <Loggers>
-    <Root level="info">
-      <AppenderRef ref="Console"/>
-      <AppenderRef ref="RollingInfoFile"/>
-      <AppenderRef ref="RollingErrorFile"/>
-      <AppenderRef ref="KafkaCustomize"/>
-    </Root>
-  </Loggers>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingInfoFile"/>
+            <AppenderRef ref="RollingErrorFile"/>
+            <AppenderRef ref="KafkaCustomize"/>
+        </Root>
+    </Loggers>
 </Configuration>

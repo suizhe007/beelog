@@ -4,7 +4,7 @@ cur=`cd "$cur"; pwd`
 cur=`dirname "$cur"`
 #config
 app="web"
-appMainClass=com.zero.tech.monitor.WebApplication
+appMainClass=com.zero.tech.web.WebApplication
 
 export WEB_HOME="$cur"
 APP_HOME="$WEB_HOME"
