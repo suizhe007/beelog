@@ -197,6 +197,10 @@
                     <artifactId>asm</artifactId>
                     <groupId>asm</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>jboss-logging</artifactId>
+                    <groupId>org.jboss.logging</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>

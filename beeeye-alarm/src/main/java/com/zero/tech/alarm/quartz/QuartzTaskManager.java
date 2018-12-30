@@ -1,8 +1,10 @@
 package com.zero.tech.alarm.quartz;
 
 import com.zero.tech.alarm.configuration.CommonProperties;
+import org.apache.logging.log4j.util.Strings;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
+import org.quartz.impl.triggers.CronTriggerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -53,6 +55,22 @@ public class QuartzTaskManager
             logger.error("", ex);
             throw ex;
         }
+    }
+
+    public boolean removeJobIfCronInequality(String groupName, String jobName, String triggerName, String cron) {
+        try {
+            Trigger trigger = scheduler.getTrigger(new TriggerKey(triggerName, groupName));
+            if (trigger instanceof CronTriggerImpl) {
+                CronTriggerImpl cronTrigger = (CronTriggerImpl) trigger;
+                if (!Strings.isBlank(cron) && !cron.equals(cronTrigger.getCronExpression())) {
+                    scheduler.deleteJob(new JobKey(jobName, groupName));
+                    return true;
+                }
+            }
+        } catch (SchedulerException ex) {
+            logger.error("group - " + groupName, ex);
+        }
+        return false;
     }
 
     public boolean isPresentTrigger(String group, String triggerName) {
