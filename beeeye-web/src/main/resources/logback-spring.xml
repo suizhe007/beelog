@@ -19,7 +19,7 @@
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
-    <springProfile name="test,prd">
+    <springProfile name="!dev">
         <!-- 按照每天生成日志文件 -->
         <appender name="FILELOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${log.path}/${APP_NAME}.log</file>

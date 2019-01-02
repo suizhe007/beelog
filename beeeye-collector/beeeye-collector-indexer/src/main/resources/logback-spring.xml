@@ -2,7 +2,6 @@
 <configuration scan="true" scanPeriod="10 seconds">
     <property name="APP_NAME" value="indexer"/>
     <property name="log.path" value="logs"/>
-    <contextName>${APP_NAME}</contextName>
 
     <springProfile name="dev">
         <!-- 命令行日志输出-->
@@ -17,7 +16,7 @@
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
-    <springProfile name="test,prd">
+    <springProfile name="!dev">
         <!-- 按照每天生成日志文件 -->
         <appender name="FILELOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${log.path}/${APP_NAME}.log</file>

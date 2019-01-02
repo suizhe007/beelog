@@ -29,8 +29,8 @@ public class AppChildrenChangeListener implements PathChildrenCacheListener {
 
     private AppInfoService appInfoService;
 
-    public AppChildrenChangeListener(RedisService rabbitmqService, ZkClient zkClient, AppInfoService appInfoService) {
-        this.redisService = rabbitmqService;
+    public AppChildrenChangeListener(RedisService redisService, ZkClient zkClient, AppInfoService appInfoService) {
+        this.redisService = redisService;
         this.zkClient = zkClient;
         this.appInfoService = appInfoService;
     }
