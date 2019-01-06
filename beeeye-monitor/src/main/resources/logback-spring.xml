@@ -2,41 +2,18 @@
 <configuration scan="true" scanPeriod="10 seconds">
     <property name="APP_NAME" value="monitor"/>
     <property name="log.path" value="logs"/>
-    <contextName>${APP_NAME}</contextName>
-
-    <logger name="com.zero.tech.data.db.mapper" level="debug"/>
-
+    <include resource="com/zero/tech/base/logging/logback/logback-common.xml"/>
+    <include resource="com/zero/tech/base/logging/logback/logback-console-appender.xml"/>
+    <include resource="com/zero/tech/base/logging/logback/logback-file-appender.xml"/>
     <springProfile name="dev">
-        <!-- 命令行日志输出-->
-        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder>
-                <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符 -->
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{96}[%line]: %msg%n</pattern>
-                <charset>UTF-8</charset>
-            </encoder>
-        </appender>
         <root level="info">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
     <springProfile name="!dev">
-        <!-- 按照每天生成日志文件 -->
-        <appender name="FILELOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${log.path}/${APP_NAME}.log</file>
-            <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{96}[%line]: %msg%n</pattern>
-                <charset>UTF-8</charset>
-            </encoder>
-            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${log.path}/${APP_NAME}.log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                    <maxFileSize>500MB</maxFileSize>
-                </timeBasedFileNamingAndTriggeringPolicy>
-                <maxHistory>30</maxHistory>
-            </rollingPolicy>
-        </appender>
         <root level="info">
             <appender-ref ref="FILELOG"/>
+            <appender-ref ref="ERROR_FILE"/>
         </root>
     </springProfile>
 </configuration>

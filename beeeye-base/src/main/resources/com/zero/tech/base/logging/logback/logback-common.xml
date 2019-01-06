@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{96}[%line]: %msg%n"/>
+    <logger name="com.zero.tech.data.db.mapper" level="debug"/>
+</included>
