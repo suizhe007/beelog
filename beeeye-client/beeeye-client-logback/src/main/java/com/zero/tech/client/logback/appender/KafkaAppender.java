@@ -41,12 +41,14 @@ import static com.zero.tech.base.constant.Constants.KAFKA_MESSAGE_MAX_SIZE;
  * @desc KafkaAppender, 包含logback kafka appender的配置
  * @date 2016-09-08 20:10:21
  */
-public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
+public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E> {
 
     // kafka topic
     private String topic;
     // 生产日志的host
     private String host;
+    //向日志中心申请的接入token,否则无法写入日志
+    private String token;
     // 生产日志的app，多节点部署会使日志有序
     private String app;
     // zookeeper的地址
@@ -200,7 +202,7 @@ public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
                     }
                 });
             }
-        }, 10000,60000);
+        }, 10000, 60000);
     }
 
     /**
@@ -222,6 +224,7 @@ public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
 
     /**
      * 校验最基本的配置是否在logback.xml进行配置
+     *
      * @return
      */
     private boolean checkNecessaryConfig() {
@@ -289,6 +292,7 @@ public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
 
     /**
      * 监察rpc type是否正确
+     *
      * @param rpcType
      * @return
      */
@@ -303,6 +307,7 @@ public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
 
     /**
      * 将logback配置文件中<config></config>节点中的值读入Map<String, String> config
+     *
      * @param kv
      */
     public void addConfig(String kv) {
@@ -317,6 +322,7 @@ public class KafkaAppender<E> extends UnsynchronizedAppenderBase<E>  {
 
     /**
      * 进行kafka配置设置
+     *
      * @param key
      * @param value
      */

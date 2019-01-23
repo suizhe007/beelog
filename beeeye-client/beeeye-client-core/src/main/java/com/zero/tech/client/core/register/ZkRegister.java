@@ -27,6 +27,7 @@ public class ZkRegister {
 
     /**
      * 对app进行编号，如果一个host上部署了一个app的多个实例，那么对app原生名字进行编号，第一个app后面加#01，第二个后面加#02，以此类推
+     *
      * @param app
      * @param host
      * @return
@@ -68,6 +69,7 @@ public class ZkRegister {
 
     /**
      * 向注册中心注册节点信息
+     *
      * @param host
      * @param app
      * @param mail
@@ -78,13 +80,14 @@ public class ZkRegister {
         this.getClient().writeData(Constants.ROOT_PATH_PERSISTENT + Constants.SLASH + app + Constants.SLASH + host,
                 mail + Constants.SEMICOLON + SysUtil.userDir);
         // 注册临时节点用于日志滚屏
-        this.getClient().createPersistent(Constants.ROOT_PATH_EPHEMERAL + Constants.SLASH + app, true);
+        this.create(Constants.SLASH + app, NodeMode.EPHEMERAL);
         this.create(Constants.SLASH + app + Constants.SLASH + host, NodeMode.EPHEMERAL,
                 Constants.APPENDER_INIT_DATA + Constants.SEMICOLON + SysUtil.userDir);
     }
 
     /**
      * 创建节点
+     *
      * @param path
      * @param nodeMode
      */
@@ -100,6 +103,7 @@ public class ZkRegister {
 
     /**
      * 创建带data的节点
+     *
      * @param path
      * @param nodeMode
      * @param data
@@ -116,6 +120,7 @@ public class ZkRegister {
 
     /**
      * 写节点数据
+     *
      * @param path
      * @param nodeMode
      * @param data
