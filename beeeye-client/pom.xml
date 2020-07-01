@@ -21,7 +21,7 @@
         <zookeeper.version>3.4.6</zookeeper.version>
         <kafkaclient.version>0.10.0.1</kafkaclient.version>
         <log4j.version>1.2.17</log4j.version>
-        <log4jcore.version>2.7</log4jcore.version>
+        <log4jcore.version>2.13.2</log4jcore.version>
         <logback.version>1.1.11</logback.version>
     </properties>
 
