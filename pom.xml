@@ -24,7 +24,7 @@
         <junit.version>4.12</junit.version>
         <jackson.version>1.9.13</jackson.version>
         <curator.version>2.11.0</curator.version>
-        <httpclient.version>4.5.3</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <mavencompile.version>3.6.1</mavencompile.version>
         <mavenshade.version>3.0.0</mavenshade.version>
         <mybatis.version>1.3.2</mybatis.version>
