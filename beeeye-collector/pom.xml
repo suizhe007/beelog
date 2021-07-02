@@ -17,7 +17,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <elasticsearch.version>2.3.3</elasticsearch.version>
+        <elasticsearch.version>6.8.15</elasticsearch.version>
         <jodatime.vserison>2.9.9</jodatime.vserison>
         <hadoop.version>2.6.0-cdh5.4.4</hadoop.version>
         <commonslang.version>2.6</commonslang.version>
